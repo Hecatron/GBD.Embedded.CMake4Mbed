@@ -59,9 +59,6 @@
     <Compile Include="..\..\common.py">
       <Link>overridescripts\common.py</Link>
     </Compile>
-    <Compile Include="..\..\extra_targets.py">
-      <Link>overridescripts\extra_targets.py</Link>
-    </Compile>
     <Compile Include="..\..\make.py">
       <Link>overridescripts\make.py</Link>
     </Compile>

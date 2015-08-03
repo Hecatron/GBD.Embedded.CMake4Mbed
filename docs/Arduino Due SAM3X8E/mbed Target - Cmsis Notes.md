@@ -23,8 +23,8 @@ In some cases the target just relates to a CPU, in others a board which uses tha
 This is the optional Target_Board directory within the HAL tree
 
 Within the ASF library the Atmel ARM devices seem to be split into 2 directories sam and sam0
-so I've renamed the TARGET_SAM21 directory to TARGET_SAM0
-and created a new directory called TARGET_SAM to mirror the ASF Setup, since the SAM3X8E falls into this other catagory
+I've left SAM21 as the sam0 directory, and created a new TARGET_SAM directory to match against the atmel-asf\sam directory
+since the SAM3X8E falls into this other catagory
 
 for the arduino I'm using the following layout
 
@@ -36,18 +36,17 @@ for the arduino I'm using the following layout
 ## Targets
 
 The name of the class within the target.py file (ARDUINODUE) will first pick up the directory TARGET_ARDUINODUE
-The additional macro TARGET_SAM3X8E will allow both directories called the same within hal / cmsis to be also included / picked up for compilation
-I think mbed just compiles and links any .c it finds in the cmsis / hal directories so we need to be careful about only including what we need
+I've also added the parent directories to extra labels self.extra_labels = ['Atmel', 'SAM', 'SAM3X8E']
+I'm not sure if this is needed, but I think it might indicate to the build system to look in those parent directories for additional headers
+which is what I need anyway
 
- * when looking through the cmsis directory the python build script will pick up on TARGET_SAM3X8E from the macros and include this
- * when looking through the hal directory the python build script will pick up on TARGET_ARDUINODUE from the class name of the target and include this
-   and include the parent directory TARGET_SAM3X8E because of it's inclusion in the macro's
+From what I can gather mbed auto compiles and links any .c files it finds in the cmsis / hal directories
+so we need to be careful about only including what we need
 
 Additional values within the target include
 
  * ARDUINO_DUE_X for the board definition in the macros's
  *  __SAM3X8E__ to select the right CPU in the macro's
- * Atmel and SAM within the exta labels
 
 
 ## CMSIS Core Files
@@ -58,22 +57,20 @@ This is something used for all ARM devices
  * deps/mbed/libraries/mbed/targets/cmsis -> lib/mbed/extra_targets/cmsis
 
 
-## ToolChain Files
+## TARGET_Atmel Directory
 
-For the toolchain directory
-TARGET_Atmel\TARGET_SAM\TARGET_SAM3X8E\TOOLCHAIN_GCC_ARM
+For the Atmel directory at the top I needed to first copy over some files from the common directory for cmsis compile
+First I created a new directory TARGET_Atmel\common\utils
+Then copied across some of the files from the asf common directory atmel-asf\common\utils
 
-I've copied files from
-
- * deps\atmel-asf\sam\utils\linker_scripts\sam3x\sam3x8\gcc
- * deps\atmel-asf\sam\utils\cmsis\sam3x\source\templates\gcc
- * also I've copied flash.ld to ARDUINODUE.ld
+ * parts.*
+ * interrupt.h
+ * interrupt directory
 
 
-## CMSIS Root Files
+## TARGET_SAM Directory
 
-For the SAM root directory
-TARGET_Atmel\TARGET_SAM
+For the SAM directory TARGET_Atmel\TARGET_SAM
 
 First we create a directory called utils
 TARGET_Atmel\TARGET_SAM\utils
@@ -88,10 +85,9 @@ from atmel-asf\sam\utils
   utils\cmsis\sam3x\include\*
 
 
-## MBed CMSIS Headers
+## TARGET_SAM3X8E Directory
 
-For the CMSIS directory
-TARGET_Atmel\TARGET_SAM\TARGET_SAM3X8E
+For the SAM3X8E directory TARGET_Atmel\TARGET_SAM\TARGET_SAM3X8E
 
 I've copied a generic cmsis.h across from another target
 the only line to modify here is the one that includes the device header, in this case I've set it to sam3xa.h
@@ -106,7 +102,20 @@ We also need a couple of system files
 
  * atmel-asf\sam\utils\cmsis\sam3x\source\templates\system_sam3x.*
  * atmel-asf\sam\utils\cmsis\sam3x\source\templates\exceptions.*
-   into the final target directory TARGET_Atmel\TARGET_SAM\TARGET_SAM3X8E\
+
+
+## TOOLCHAIN_GCC_ARM Directory
+
+For the toolchain directory TARGET_Atmel\TARGET_SAM\TARGET_SAM3X8E\TOOLCHAIN_GCC_ARM
+
+I've copied files from
+
+ * deps\atmel-asf\sam\utils\cmsis\sam3x\source\templates\gcc
+
+For the linker scripts located under
+deps\atmel-asf\sam\utils\linker_scripts\sam3x\sam3x8\gcc
+
+we should only copy one of the files - flash.ld, this is because the mbed build scripts just use the first one they can find
 
 
 ### cmsis_nvic.h
@@ -137,6 +146,7 @@ Looking at the pdf on page 62 the SRAM address NVIC_RAM_VECTOR_ADDRESS should be
 
 ## TODO
 
- * The startup file in the toolchain directory is C instead of .S assembler, will this work?
+ * The startup file in the toolchain directory is C instead of .S assembler
+   this seems to compile into the cmsis source okay so I've left it in, not sure if it's needed though
    gcc4mbed seems to use the .ld file for linkage so hopefully we can ignore the startup file
-
+   further investigation needed to see if it's required

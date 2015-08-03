@@ -10,42 +10,71 @@ The layout is:
  * hal\Target_Manufactuer\Target_Family\Target_CPU\Target_Board
  * hal\TARGET_Atmel\TARGET_SAM\TARGET_SAM3X\TARGET_ARDUINODUE
 
-## HAL
+
+### Links
 
 For arduino files to use as an example
 
  * https://github.com/arduino/Arduino/tree/master/hardware/arduino/sam
  * https://github.com/arduino/Arduino/tree/master/hardware/arduino/sam/system
 
-## Drivers directory
 
-it looks like the existing target for the Sam21 CPU was using a limited set of files from
-deps\atmel-asf\sam0\drivers
+## Atmel Files
 
-we want to do something similar but with
-deps\atmel-asf\sam\drivers
+At the top level hal\TARGET_Atmel\ we already have the following directories
+from the existing mbed sources
 
-For now I've just copied the entire drivers directory across to the family directory
-lib\mbed\extra_targets\hal\TARGET_Atmel\TARGET_SAM3X
+ * common - files match against asf
+ * common2 - files match against asf
 
-TODO this needs strimming down to just what we need
-since it's around 200Mb
+For the config directory
+TODO these may be SAM0 specific, we might need to write new ones for the SAM / SAM3x8E targets
+and move this directory into the SAM0 directory
+most of them seem to be includes with example projects in the asf
 
-## Common Atmel files
+ * conf_board.h - empty
+ * conf_clocks.h - lots of stuff in
+ * conf_dma.h - one liner
+ * conf_extint.h - one liner
+ * conf_spi.h - 3 lines
 
-it looks like we have a set of files in the TARGET_Atmel directory from the original mbed sources
-that provide some board related info, it looks like this was originally part of the asf directory from
 
- * atmel-asf\common
- * atmel-asf\common2
- * TODO not sure where the files in config originated from
+## Target_Sam directory
 
-## Main Target device .h
+Moving down into the hal\TARGET_Atmel\TARGET_SAM directory
 
-The entry point for mbed is device.h
-according to the docs https://developer.mbed.org/handbook/mbed-SDK-porting
+### Drivers subdirectory
 
-the main 2 api's we need to port to test are
+we need to create a new directory hal\TARGET_Atmel\TARGET_SAM\drivers
+looking at the existing SAM0 drivers directory to see which files we need to copy over
+we need to copy the following from deps\atmel-asf\sam\drivers
+
+TODO
+
+
+### Additional Headers
+
+Next we need to locate some headers within the hal\TARGET_Atmel\TARGET_SAM directory
+these should in theory be common to all of the sam series of CPU's
+
+TODO For now I've just made a copy of the ones from sam0
+I need to check these ones over
+
+
+### Board Directory - device.h
+
+next we need to create a directory of hal\TARGET_Atmel\TARGET_SAM\TARGET_SAM3X8E\TARGET_ARDUINODUE\
+and place a device.h file in there
+
+according to the docs device.h is the main entry point for mbed for the target
+It just a list of features that are enabled for that given target
+
+ * https://developer.mbed.org/handbook/mbed-SDK-porting
+
+
+## API Testing
+
+The main 2 api's we need to port to test are
 
  * gpio
  * us_ticker_api
@@ -53,6 +82,8 @@ the main 2 api's we need to port to test are
  * we need to set almost all values in device.h to 0
  * try and compile / run the hello world
 
+
 ## TODO
 
  * next try and use TESTTARGET to compile the LPC example code first to make sure the extra targets directories work
+

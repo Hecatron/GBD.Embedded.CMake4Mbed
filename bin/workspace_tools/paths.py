@@ -22,7 +22,7 @@ specifiedtarget = args.mcu
 # If the target is an overriden one in our directory
 # then we need to change the value of MBED_TARGETS_PATH within paths.py
 # This is used within build_api.py / build_mbed_libs()
-DOTBMED_TARGETS = ['TESTTARGET','TESTTARGET2']
+DOTBMED_TARGETS = ['TESTTARGET','ARDUINODUE']
 
 # TODO Check if Target includes 'EXTRA_TARGET' in it's lables, this is currently not the best way
 

@@ -16,6 +16,6 @@ BUILD_DIR = abspath(join(OVERRIDE_ROOT, "../build"))
 # TODO add additional include directories for Atmel Arduino Due ASF libs
 # To BUILD_OPTIONS
 
-IncPath1 = abspath("../../deps/atmel-asf/sam/utils")
-
-BUILD_OPTIONS = ['-I' + IncPath1]
+#IncPath1 = abspath("../../deps/atmel-asf/sam/utils")
+#BUILD_OPTIONS = ['-I' + IncPath1]
+# Doesn't work this way

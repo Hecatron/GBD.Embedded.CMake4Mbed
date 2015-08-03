@@ -25,10 +25,10 @@ class ARDUINODUE(Target, object):
     def __init__(self):
         super(self.__class__, self).__init__()
         self.core = "Cortex-M3"
-        self.extra_labels = ['Atmel', 'SAM']
+        self.extra_labels = ['Atmel', 'SAM', 'SAM3X8E']
         self.supported_toolchains = ["GCC_ARM"]
         self.default_toolchain = "GCC_ARM"
-        self.macros = ['TARGET_SAM3X8E', '__SAM3X8E__', 'ARDUINO_DUE_X']
+        self.macros = ['__SAM3X8E__', 'ARDUINO_DUE_X']
         self.target_directory = abspath(join(dirname(__file__), "../../lib/mbed/extra_targets"))
 
 # Add Custom Targets to mbed build system
