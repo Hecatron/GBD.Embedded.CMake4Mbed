@@ -1,0 +1,17 @@
+
+https://developer.mbed.org/handbook/mbed-tools
+
+For mbed there are 2 top level scripts
+
+build.py - builds the mbed library with different options added (such as ethernet, usb)
+           generates a static library we can link into our own project
+
+make.py -  builds test projects for testing on the new chip
+
+gcc flags are defined within toolchains\gcc.py
+flags are set during the constructor of the GCC class which inherits from mbedToolchain
+
+we need to focus on settings.py
+1. look at build options for adding additional headers for the Atmel Arduino Due target
+2. I think we can use one of the scripts further up the chain from toolchains\gcc.py
+to get the cflags we need for compiling via cmake

@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>337d3f0b-8278-434e-9042-a920907e6dfa</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <StartupFile>..\..\build.py</StartupFile>
+    <SearchPath>..\..\..\..\deps\mbed\</SearchPath>
+    <WorkingDirectory>..\..\</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <Name>mbed_build</Name>
+    <RootNamespace>mbed_build</RootNamespace>
+    <InterpreterId>{2af0f10d-7135-4994-9156-5d01c9c11b7e}</InterpreterId>
+    <InterpreterVersion>2.7</InterpreterVersion>
+    <IsWindowsApplication>False</IsWindowsApplication>
+    <LaunchProvider>Standard Python launcher</LaunchProvider>
+    <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
+    <CommandLineArguments>-m ARDUINODUE -t GCC_ARM</CommandLineArguments>
+    <Environment>
+    </Environment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\..\..\..\deps\mbed\workspace_tools\build.py">
+      <Link>mbedscripts\build.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\deps\mbed\workspace_tools\build_api.py">
+      <Link>mbedscripts\build_api.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\deps\mbed\workspace_tools\make.py">
+      <Link>mbedscripts\make.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\deps\mbed\workspace_tools\paths.py">
+      <Link>mbedscripts\paths.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\deps\mbed\workspace_tools\settings.py">
+      <Link>mbedscripts\settings.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\deps\mbed\workspace_tools\targets.py">
+      <Link>mbedscripts\targets.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\deps\mbed\workspace_tools\toolchains\gcc.py">
+      <Link>mbedscripts\toolchains\gcc.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\deps\mbed\workspace_tools\toolchains\__init__.py">
+      <Link>mbedscripts\toolchains\__init__.py</Link>
+    </Compile>
+    <Compile Include="..\..\build.py">
+      <Link>overridescripts\build.py</Link>
+    </Compile>
+    <Compile Include="..\..\common.py">
+      <Link>overridescripts\common.py</Link>
+    </Compile>
+    <Compile Include="..\..\extra_targets.py">
+      <Link>overridescripts\extra_targets.py</Link>
+    </Compile>
+    <Compile Include="..\..\make.py">
+      <Link>overridescripts\make.py</Link>
+    </Compile>
+    <Compile Include="..\..\paths.py">
+      <Link>overridescripts\paths.py</Link>
+    </Compile>
+    <Compile Include="..\..\private_settings.py">
+      <Link>overridescripts\private_settings.py</Link>
+    </Compile>
+    <Compile Include="..\..\targets.py">
+      <Link>overridescripts\targets.py</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <InterpreterReference Include="{2af0f10d-7135-4994-9156-5d01c9c11b7e}\2.7" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="mbedscripts\" />
+    <Folder Include="mbedscripts\toolchains\" />
+    <Folder Include="overridescripts\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <PtvsTargetsFile>$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets</PtvsTargetsFile>
+  </PropertyGroup>
+  <Import Condition="Exists($(PtvsTargetsFile))" Project="$(PtvsTargetsFile)" />
+  <Import Condition="!Exists($(PtvsTargetsFile))" Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
+  <!-- Uncomment the CoreCompile target to enable the Build command in
+       Visual Studio and specify your pre- and post-build commands in
+       the BeforeBuild and AfterBuild targets below. -->
+  <!--<Target Name="CoreCompile" />-->
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+</Project>
