@@ -17,11 +17,17 @@
 #include "us_ticker_api.h"
 #include "cmsis.h"
 #include "mbed_assert.h"
-#include "ins_gclk.h"
+
+// TODO see utils\cmsis\sam3x\include\instance
+//#include "ins_gclk.h"
 #include "compiler.h"
-#include "system.h"
-#include "tc.h"
-#include "tc_interrupt.h"
+
+// TODO drivers/system
+//#include "system.h"
+
+// TODO utils\cmsis\sam3x\include\component
+//#include "tc.h"
+//#include "tc_interrupt.h"
 
 #define TICKER_COUNTER_uS		TC4
 #define TICKER_COUNTER_IRQn		TC4_IRQn

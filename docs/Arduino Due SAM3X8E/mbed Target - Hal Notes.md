@@ -19,7 +19,7 @@ For arduino files to use as an example
  * https://github.com/arduino/Arduino/tree/master/hardware/arduino/sam/system
 
 
-## Atmel Files
+## TARGET_Atmel Directory
 
 At the top level hal\TARGET_Atmel\ we already have the following directories
 from the existing mbed sources
@@ -39,9 +39,18 @@ most of them seem to be includes with example projects in the asf
  * conf_spi.h - 3 lines
 
 
-## Target_Sam directory
+## TARGET_SAM Directory
 
-Moving down into the hal\TARGET_Atmel\TARGET_SAM directory
+For the hal\TARGET_Atmel\TARGET_SAM directory
+
+
+### Utils subdirectory
+
+I looks like we need some headers from the utils directory under cmsis
+
+
+
+
 
 ### Drivers subdirectory
 
@@ -52,7 +61,7 @@ we need to copy the following from deps\atmel-asf\sam\drivers
 TODO
 
 
-### Additional Headers
+### API Headers
 
 Next we need to locate some headers within the hal\TARGET_Atmel\TARGET_SAM directory
 these should in theory be common to all of the sam series of CPU's
@@ -61,10 +70,10 @@ TODO For now I've just made a copy of the ones from sam0
 I need to check these ones over
 
 
-### Board Directory - device.h
+## TARGET_ARDUINODUE Directory
 
-next we need to create a directory of hal\TARGET_Atmel\TARGET_SAM\TARGET_SAM3X8E\TARGET_ARDUINODUE\
-and place a device.h file in there
+For the hal\TARGET_Atmel\TARGET_SAM\TARGET_SAM3X8E\TARGET_ARDUINODUE directory
+We need a single device.h file
 
 according to the docs device.h is the main entry point for mbed for the target
 It just a list of features that are enabled for that given target

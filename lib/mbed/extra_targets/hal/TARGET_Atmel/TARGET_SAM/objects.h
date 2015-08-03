@@ -21,7 +21,9 @@
 #include "PeripheralNames.h"
 #include "gpio_object.h"
 #include "adc.h"
-#include "extint.h"
+
+// TODO External Interupts
+//#include "extint.h"
 
 #ifdef __cplusplus
 extern "C" {
