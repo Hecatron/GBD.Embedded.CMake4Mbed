@@ -1,0 +1,387 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>5c442750-af5f-4d5d-a4b9-86b0c09086d6</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <StartupFile>..\..\workspace_tools\make.py</StartupFile>
+    <SearchPath>..\..\..\deps\mbed\</SearchPath>
+    <WorkingDirectory>..\..\workspace_tools\</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <Name>mbed_make</Name>
+    <RootNamespace>mbed_make</RootNamespace>
+    <LaunchProvider>Standard Python launcher</LaunchProvider>
+    <CommandLineArguments>-m ARDUINODUE -t GCC_ARM</CommandLineArguments>
+    <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
+    <IsWindowsApplication>False</IsWindowsApplication>
+    <InterpreterId>{2af0f10d-7135-4994-9156-5d01c9c11b7e}</InterpreterId>
+    <InterpreterVersion>2.7</InterpreterVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\build.py">
+      <Link>mbedscripts\build.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\build_api.py">
+      <Link>mbedscripts\build_api.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\build_release.py">
+      <Link>mbedscripts\build_release.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\build_travis.py">
+      <Link>mbedscripts\build_travis.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\compliance\ioper_base.py">
+      <Link>mbedscripts\compliance\ioper_base.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\compliance\ioper_runner.py">
+      <Link>mbedscripts\compliance\ioper_runner.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\compliance\ioper_test_fs.py">
+      <Link>mbedscripts\compliance\ioper_test_fs.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\compliance\ioper_test_target_id.py">
+      <Link>mbedscripts\compliance\ioper_test_target_id.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\compliance\__init__.py">
+      <Link>mbedscripts\compliance\__init__.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\data\support.py">
+      <Link>mbedscripts\data\support.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\data\__init__.py">
+      <Link>mbedscripts\data\__init__.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\dev\dsp_fir.py">
+      <Link>mbedscripts\dev\dsp_fir.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\dev\intel_hex_utils.py">
+      <Link>mbedscripts\dev\intel_hex_utils.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\dev\rpc_classes.py">
+      <Link>mbedscripts\dev\rpc_classes.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\dev\syms.py">
+      <Link>mbedscripts\dev\syms.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\dev\__init__.py">
+      <Link>mbedscripts\dev\__init__.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\export\codered.py">
+      <Link>mbedscripts\export\codered.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\export\codesourcery.py">
+      <Link>mbedscripts\export\codesourcery.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\export\coide.py">
+      <Link>mbedscripts\export\coide.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\export\ds5_5.py">
+      <Link>mbedscripts\export\ds5_5.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\export\emblocks.py">
+      <Link>mbedscripts\export\emblocks.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\export\exporters.py">
+      <Link>mbedscripts\export\exporters.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\export\gccarm.py">
+      <Link>mbedscripts\export\gccarm.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\export\iar.py">
+      <Link>mbedscripts\export\iar.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\export\kds.py">
+      <Link>mbedscripts\export\kds.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\export\simplicityv3.py">
+      <Link>mbedscripts\export\simplicityv3.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\export\uvision4.py">
+      <Link>mbedscripts\export\uvision4.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\export\zip.py">
+      <Link>mbedscripts\export\zip.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\export\__init__.py">
+      <Link>mbedscripts\export\__init__.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\export_test.py">
+      <Link>mbedscripts\export_test.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\hooks.py">
+      <Link>mbedscripts\hooks.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\host_tests\default_auto.py">
+      <Link>mbedscripts\host_tests\default_auto.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\host_tests\detect_auto.py">
+      <Link>mbedscripts\host_tests\detect_auto.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\host_tests\dev_null_auto.py">
+      <Link>mbedscripts\host_tests\dev_null_auto.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\host_tests\echo.py">
+      <Link>mbedscripts\host_tests\echo.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\host_tests\echo_flow_control.py">
+      <Link>mbedscripts\host_tests\echo_flow_control.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\host_tests\example\BroadcastReceive.py">
+      <Link>mbedscripts\host_tests\example\BroadcastReceive.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\host_tests\example\BroadcastSend.py">
+      <Link>mbedscripts\host_tests\example\BroadcastSend.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\host_tests\example\MulticastReceive.py">
+      <Link>mbedscripts\host_tests\example\MulticastReceive.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\host_tests\example\MulticastSend.py">
+      <Link>mbedscripts\host_tests\example\MulticastSend.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\host_tests\example\TCPEchoClient.py">
+      <Link>mbedscripts\host_tests\example\TCPEchoClient.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\host_tests\example\TCPEchoServer.py">
+      <Link>mbedscripts\host_tests\example\TCPEchoServer.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\host_tests\example\UDPEchoClient.py">
+      <Link>mbedscripts\host_tests\example\UDPEchoClient.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\host_tests\example\UDPEchoServer.py">
+      <Link>mbedscripts\host_tests\example\UDPEchoServer.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\host_tests\example\__init__.py">
+      <Link>mbedscripts\host_tests\example\__init__.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\host_tests\hello_auto.py">
+      <Link>mbedscripts\host_tests\hello_auto.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\host_tests\host_registry.py">
+      <Link>mbedscripts\host_tests\host_registry.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\host_tests\host_test.py">
+      <Link>mbedscripts\host_tests\host_test.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\host_tests\host_tests_plugins\host_test_plugins.py">
+      <Link>mbedscripts\host_tests\host_tests_plugins\host_test_plugins.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\host_tests\host_tests_plugins\host_test_registry.py">
+      <Link>mbedscripts\host_tests\host_tests_plugins\host_test_registry.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\host_tests\host_tests_plugins\module_copy_firefox.py">
+      <Link>mbedscripts\host_tests\host_tests_plugins\module_copy_firefox.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\host_tests\host_tests_plugins\module_copy_mbed.py">
+      <Link>mbedscripts\host_tests\host_tests_plugins\module_copy_mbed.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\host_tests\host_tests_plugins\module_copy_mps2.py">
+      <Link>mbedscripts\host_tests\host_tests_plugins\module_copy_mps2.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\host_tests\host_tests_plugins\module_copy_shell.py">
+      <Link>mbedscripts\host_tests\host_tests_plugins\module_copy_shell.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\host_tests\host_tests_plugins\module_copy_silabs.py">
+      <Link>mbedscripts\host_tests\host_tests_plugins\module_copy_silabs.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\host_tests\host_tests_plugins\module_reset_mbed.py">
+      <Link>mbedscripts\host_tests\host_tests_plugins\module_reset_mbed.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\host_tests\host_tests_plugins\module_reset_mps2.py">
+      <Link>mbedscripts\host_tests\host_tests_plugins\module_reset_mps2.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\host_tests\host_tests_plugins\module_reset_silabs.py">
+      <Link>mbedscripts\host_tests\host_tests_plugins\module_reset_silabs.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\host_tests\host_tests_plugins\__init__.py">
+      <Link>mbedscripts\host_tests\host_tests_plugins\__init__.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\host_tests\mbedrpc.py">
+      <Link>mbedscripts\host_tests\mbedrpc.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\host_tests\midi.py">
+      <Link>mbedscripts\host_tests\midi.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\host_tests\net_test.py">
+      <Link>mbedscripts\host_tests\net_test.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\host_tests\rpc.py">
+      <Link>mbedscripts\host_tests\rpc.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\host_tests\rtc_auto.py">
+      <Link>mbedscripts\host_tests\rtc_auto.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\host_tests\serial_nc_rx_auto.py">
+      <Link>mbedscripts\host_tests\serial_nc_rx_auto.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\host_tests\serial_nc_tx_auto.py">
+      <Link>mbedscripts\host_tests\serial_nc_tx_auto.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\host_tests\stdio_auto.py">
+      <Link>mbedscripts\host_tests\stdio_auto.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\host_tests\tcpecho_client.py">
+      <Link>mbedscripts\host_tests\tcpecho_client.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\host_tests\tcpecho_client_auto.py">
+      <Link>mbedscripts\host_tests\tcpecho_client_auto.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\host_tests\tcpecho_server.py">
+      <Link>mbedscripts\host_tests\tcpecho_server.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\host_tests\tcpecho_server_auto.py">
+      <Link>mbedscripts\host_tests\tcpecho_server_auto.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\host_tests\tcpecho_server_loop.py">
+      <Link>mbedscripts\host_tests\tcpecho_server_loop.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\host_tests\udpecho_client.py">
+      <Link>mbedscripts\host_tests\udpecho_client.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\host_tests\udpecho_client_auto.py">
+      <Link>mbedscripts\host_tests\udpecho_client_auto.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\host_tests\udpecho_server.py">
+      <Link>mbedscripts\host_tests\udpecho_server.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\host_tests\udpecho_server_auto.py">
+      <Link>mbedscripts\host_tests\udpecho_server_auto.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\host_tests\udp_link_layer_auto.py">
+      <Link>mbedscripts\host_tests\udp_link_layer_auto.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\host_tests\wait_us_auto.py">
+      <Link>mbedscripts\host_tests\wait_us_auto.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\host_tests\wfi_auto.py">
+      <Link>mbedscripts\host_tests\wfi_auto.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\host_tests\__init__.py">
+      <Link>mbedscripts\host_tests\__init__.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\libraries.py">
+      <Link>mbedscripts\libraries.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\make.py">
+      <Link>mbedscripts\make.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\options.py">
+      <Link>mbedscripts\options.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\patch.py">
+      <Link>mbedscripts\patch.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\paths.py">
+      <Link>mbedscripts\paths.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\project.py">
+      <Link>mbedscripts\project.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\settings.py">
+      <Link>mbedscripts\settings.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\singletest.py">
+      <Link>mbedscripts\singletest.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\size.py">
+      <Link>mbedscripts\size.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\synch.py">
+      <Link>mbedscripts\synch.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\targets.py">
+      <Link>mbedscripts\targets.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\tests.py">
+      <Link>mbedscripts\tests.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\test_api.py">
+      <Link>mbedscripts\test_api.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\test_db.py">
+      <Link>mbedscripts\test_db.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\test_exporters.py">
+      <Link>mbedscripts\test_exporters.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\test_mysql.py">
+      <Link>mbedscripts\test_mysql.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\test_webapi.py">
+      <Link>mbedscripts\test_webapi.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\toolchains\arm.py">
+      <Link>mbedscripts\toolchains\arm.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\toolchains\gcc.py">
+      <Link>mbedscripts\toolchains\gcc.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\toolchains\iar.py">
+      <Link>mbedscripts\toolchains\iar.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\toolchains\__init__.py">
+      <Link>mbedscripts\toolchains\__init__.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\utils.py">
+      <Link>mbedscripts\utils.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\deps\mbed\workspace_tools\__init__.py">
+      <Link>mbedscripts\__init__.py</Link>
+    </Compile>
+    <Compile Include="..\..\workspace_tools\build.py">
+      <Link>overridescripts\build.py</Link>
+    </Compile>
+    <Compile Include="..\..\workspace_tools\common.py">
+      <Link>overridescripts\common.py</Link>
+    </Compile>
+    <Compile Include="..\..\workspace_tools\make.py">
+      <Link>overridescripts\make.py</Link>
+    </Compile>
+    <Compile Include="..\..\workspace_tools\paths.py">
+      <Link>overridescripts\paths.py</Link>
+    </Compile>
+    <Compile Include="..\..\workspace_tools\private_settings.py">
+      <Link>overridescripts\private_settings.py</Link>
+    </Compile>
+    <Compile Include="..\..\workspace_tools\targets.py">
+      <Link>overridescripts\targets.py</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="mbedscripts\" />
+    <Folder Include="mbedscripts\compliance\" />
+    <Folder Include="mbedscripts\data\" />
+    <Folder Include="mbedscripts\dev\" />
+    <Folder Include="mbedscripts\export\" />
+    <Folder Include="mbedscripts\host_tests\" />
+    <Folder Include="mbedscripts\host_tests\host_tests_plugins\" />
+    <Folder Include="mbedscripts\host_tests\example\" />
+    <Folder Include="mbedscripts\toolchains\" />
+    <Folder Include="overridescripts\" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterpreterReference Include="{2af0f10d-7135-4994-9156-5d01c9c11b7e}\2.7" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <PtvsTargetsFile>$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets</PtvsTargetsFile>
+  </PropertyGroup>
+  <Import Condition="Exists($(PtvsTargetsFile))" Project="$(PtvsTargetsFile)" />
+  <Import Condition="!Exists($(PtvsTargetsFile))" Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
+  <!-- Uncomment the CoreCompile target to enable the Build command in
+       Visual Studio and specify your pre- and post-build commands in
+       the BeforeBuild and AfterBuild targets below. -->
+  <!--<Target Name="CoreCompile" />-->
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+</Project>
