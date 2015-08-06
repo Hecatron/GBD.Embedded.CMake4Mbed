@@ -1,0 +1,4 @@
+loadbin D:\SourceControl\GitRepos\GBD.Embedded.CMake4Mbed\src\HelloWorld-STM32\NUCLEO_F103RB\HelloWorld-STM32.bin, 0x0
+r
+g
+exit

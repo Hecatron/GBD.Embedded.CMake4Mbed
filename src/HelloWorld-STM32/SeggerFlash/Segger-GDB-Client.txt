@@ -1,0 +1,4 @@
+target extended-remote :2331
+set remotetimeout 60000
+set mem inaccessible-by-default off
+set arm force-mode thumb

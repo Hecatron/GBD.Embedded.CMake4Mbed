@@ -6,9 +6,9 @@ import wget
 
 # Target Base Class
 class Target(object):
-    def __init__(self):
+    def __init__(self, destdir):
         super(self.__class__, self).__init__()
-        self.url = ""
+        self.destdir = destdir
 
     def download(self):
         print("Download not Implemented")
@@ -16,18 +16,16 @@ class Target(object):
     def extract(self):
         print("Extraction not Implemented")
 
-
-
 # Http Download Class
 class HttpTarget(Target):
-    def __init__(self, httpurl):
-        super(self.__class__, self).__init__()
+    def __init__(self, destdir, httpurl):
+        super(self.__class__, self).__init__(destdir)
         self.url = httpurl
 
     def download(self):
-        wget.download(self.url)
-        print("Download not Implemented")
-
+        print("Downloading :" + self.url)
+        wget.download(self.url, out=self.destdir)
+        
     def extract(self):
         print("Extraction not Implemented")
 

@@ -11,6 +11,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HelloWorld-LPC", "HelloWorl
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HelloWorld-Due", "HelloWorld-Due\HelloWorld-Due.vcxproj", "{627A46E9-1946-4D98-AB32-BA43F5EF9E34}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HelloWorld-STM32", "HelloWorld-STM32\HelloWorld-STM32.vcxproj", "{794DCF8C-1536-465D-A7F2-38EA0A85A7D3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -35,6 +37,14 @@ Global
 		{627A46E9-1946-4D98-AB32-BA43F5EF9E34}.Release|x64.Build.0 = Release|x64
 		{627A46E9-1946-4D98-AB32-BA43F5EF9E34}.Release|x86.ActiveCfg = Release|Win32
 		{627A46E9-1946-4D98-AB32-BA43F5EF9E34}.Release|x86.Build.0 = Release|Win32
+		{794DCF8C-1536-465D-A7F2-38EA0A85A7D3}.Debug|x64.ActiveCfg = Debug|x64
+		{794DCF8C-1536-465D-A7F2-38EA0A85A7D3}.Debug|x64.Build.0 = Debug|x64
+		{794DCF8C-1536-465D-A7F2-38EA0A85A7D3}.Debug|x86.ActiveCfg = Debug|Win32
+		{794DCF8C-1536-465D-A7F2-38EA0A85A7D3}.Debug|x86.Build.0 = Debug|Win32
+		{794DCF8C-1536-465D-A7F2-38EA0A85A7D3}.Release|x64.ActiveCfg = Release|x64
+		{794DCF8C-1536-465D-A7F2-38EA0A85A7D3}.Release|x64.Build.0 = Release|x64
+		{794DCF8C-1536-465D-A7F2-38EA0A85A7D3}.Release|x86.ActiveCfg = Release|Win32
+		{794DCF8C-1536-465D-A7F2-38EA0A85A7D3}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -42,5 +52,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{848EC5DA-816C-4946-ACBE-87C6AC6E1B39} = {396F638D-E39D-4E32-84BE-E6C325253CDF}
 		{627A46E9-1946-4D98-AB32-BA43F5EF9E34} = {396F638D-E39D-4E32-84BE-E6C325253CDF}
+		{794DCF8C-1536-465D-A7F2-38EA0A85A7D3} = {396F638D-E39D-4E32-84BE-E6C325253CDF}
 	EndGlobalSection
 EndGlobal

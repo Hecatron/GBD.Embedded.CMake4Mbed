@@ -19,9 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{848EC5DA-816C-4946-ACBE-87C6AC6E1B39}</ProjectGuid>
+    <ProjectGuid>{794DCF8C-1536-465D-A7F2-38EA0A85A7D3}</ProjectGuid>
     <Keyword>MakeFileProj</Keyword>
-    <ProjectName>HelloWorld-LPC</ProjectName>
+    <ProjectName>HelloWorld-STM32</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -75,20 +75,14 @@
   <ItemDefinitionGroup>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="CMakeLists.txt" />
     <Text Include="readme.txt" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="vsgdbconfig.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\gcc4mbed.c" />
-    <ClCompile Include="src\main.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="cmake\BuildOptions.cmake" />
-    <None Include="cmake\ProjectFiles.cmake" />
-    <None Include="cmake\ToolChainOptions.cmake" />
+    <ClCompile Include="..\gcc4mbed.c" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

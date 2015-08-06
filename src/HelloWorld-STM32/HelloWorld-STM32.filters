@@ -13,34 +13,19 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="cmake">
-      <UniqueIdentifier>{a0b7a3dd-b31e-4d0f-8b37-3c366cf477a4}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="readme.txt" />
-    <Text Include="CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\gcc4mbed.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="vsgdbconfig.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="src\gcc4mbed.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="cmake\ProjectFiles.cmake">
-      <Filter>cmake</Filter>
-    </None>
-    <None Include="cmake\BuildOptions.cmake">
-      <Filter>cmake</Filter>
-    </None>
-    <None Include="cmake\ToolChainOptions.cmake">
-      <Filter>cmake</Filter>
-    </None>
   </ItemGroup>
 </Project>
