@@ -4,7 +4,6 @@
 
 # TODO list of mbed Targets
 # TODO mbed options for which parts of the lib to include
-# TODO Document options
 
 # CMAKE4MBED_DIR should resolve to the root directory of Cmake4Mbed
 # CMAKE_CURRENT_LIST_DIR is the directory if this script
