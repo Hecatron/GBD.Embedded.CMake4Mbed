@@ -25,37 +25,23 @@ macro(SetupToolChain)
         set(HOST_EXE_SUFFIX ".exe")
     endif()
 
-    # ToolChain directory
-    set(TOOLCHAIN_SYSROOT "${CMAKE4MBED_DIR}/deps/gcc-arm-none-eabi")
+    # GCC for Arm
+    if(TOOLCHAIN STREQUAL "armgcc")
 
-    # Override toolchain exe's
-    CMAKE_FORCE_C_COMPILER   ("${TOOLCHAIN_SYSROOT}/bin/arm-none-eabi-gcc${HOST_EXE_SUFFIX}" GNU)
-    CMAKE_FORCE_CXX_COMPILER ("${TOOLCHAIN_SYSROOT}/bin/arm-none-eabi-g++${HOST_EXE_SUFFIX}" GNU)
-    set(SIZE_COMMAND          "${TOOLCHAIN_SYSROOT}/bin/arm-none-eabi-size${HOST_EXE_SUFFIX}")
-    set(OBJCOPY_COMMAND       "${TOOLCHAIN_SYSROOT}/bin/arm-none-eabi-objcopy${HOST_EXE_SUFFIX}")
+        # ToolChain directory
+        if(NOT DEFINED TOOLCHAIN_SYSROOT)
+            set(TOOLCHAIN_SYSROOT "${CMAKE4MBED_DIR}/deps/gcc-arm-none-eabi")
+        endif()
 
-    message(STATUS "ToolChain Variables Set")
-    #message(STATUS "HOST_EXE_SUFFIX: ${HOST_EXE_SUFFIX}")
-    #message(STATUS "CMAKE_FORCE_C_COMPILER: ${CMAKE_FORCE_C_COMPILER}")
-    #message(STATUS "CMAKE_FORCE_CXX_COMPILER: ${CMAKE_FORCE_CXX_COMPILER}")
-    #message(STATUS "SIZE_COMMAND: ${SIZE_COMMAND}")
-    #message(STATUS "OBJCOPY_COMMAND: ${OBJCOPY_COMMAND}")
+        # Set toolchain exe's
+        CMAKE_FORCE_C_COMPILER   ("${TOOLCHAIN_SYSROOT}/bin/arm-none-eabi-gcc${HOST_EXE_SUFFIX}" GNU)
+        CMAKE_FORCE_CXX_COMPILER ("${TOOLCHAIN_SYSROOT}/bin/arm-none-eabi-g++${HOST_EXE_SUFFIX}" GNU)
+        set(SIZE_COMMAND          "${TOOLCHAIN_SYSROOT}/bin/arm-none-eabi-size${HOST_EXE_SUFFIX}")
+        set(OBJCOPY_COMMAND       "${TOOLCHAIN_SYSROOT}/bin/arm-none-eabi-objcopy${HOST_EXE_SUFFIX}")
 
-endmacro()
-
-
-
-
-
-
-
-
-# This macro sets up the toolchain variables based on the set options
-macro(SetupToolChain2)
-
-    # Custom 
-    if (TOOLCHAIN STREQUAL "custom")
-        # TODO Check definitions have been set
+    # Custom
+    elseif (TOOLCHAIN STREQUAL "custom")
+        # Check definitions have been set
 
 	if(NOT DEFINED CMAKE_CXX_COMPILER)
             message( FATAL_ERROR "For Custom Toolchain, CMAKE_CXX_COMPILER must be defined" )
@@ -67,18 +53,16 @@ macro(SetupToolChain2)
             message( FATAL_ERROR "For Custom Toolchain, SIZE_COMMAND must be defined" )
         endif()
 
-    # GCC for Arm
-    elseif(TOOLCHAIN STREQUAL "armgcc")
-	set(TOOLCHAIN_SYSROOT "${CMAKE4MBED_DIR}/deps/gcc-arm-none-eabi")
-        set(CMAKE_CXX_COMPILER "${TOOLCHAIN_SYSROOT}/bin/arm-none-eabi-g++${CMAKE_EXECUTABLE_SUFFIX}")
-        set(CMAKE_C_COMPILER   "${TOOLCHAIN_SYSROOT}/bin/arm-none-eabi-gcc${CMAKE_EXECUTABLE_SUFFIX}")
-        set(SIZE_COMMAND       "${TOOLCHAIN_SYSROOT}/bin/arm-none-eabi-size${CMAKE_EXECUTABLE_SUFFIX}")
-        set(OBJCOPY_COMMAND    "${TOOLCHAIN_SYSROOT}/bin/arm-none-eabi-objcopy${CMAKE_EXECUTABLE_SUFFIX}")
-
     # ARM CC
-    # TODO this is currently hardcoded for one specific device target
+    # TODO this is currently hardcoded for one specific device target and not tested
     elseif (TOOLCHAIN STREQUAL "armcc")
-        set(TOOLCHAIN_SYSROOT "${CMAKE4MBED_DIR}/deps/ARMCompiler")
+
+        # ToolChain directory
+        if(NOT DEFINED TOOLCHAIN_SYSROOT)
+            set(TOOLCHAIN_SYSROOT "${CMAKE4MBED_DIR}/deps/ARMCompiler")
+        endif()
+
+        # Set toolchain exe's
         set(CMAKE_CXX_COMPILER "${TOOLCHAIN_SYSROOT}/bin/armcc${CMAKE_EXECUTABLE_SUFFIX}")
         set(CMAKE_C_COMPILER   "${TOOLCHAIN_SYSROOT}/bin/armcc${CMAKE_EXECUTABLE_SUFFIX}")
         set(SIZE_COMMAND       "size${CMAKE_EXECUTABLE_SUFFIX}")
@@ -91,9 +75,12 @@ macro(SetupToolChain2)
     
     endif()
 
-    message(STATUS "C++ compiler: ${CMAKE_CXX_COMPILER}")
-    message(STATUS "C compiler  : ${CMAKE_C_COMPILER}")
-    message(STATUS "Size command: ${SIZE_COMMAND}")
-    message(STATUS "Objcopy command: ${OBJCOPY_COMMAND}")
-endmacro()
+    #message(STATUS "HOST_EXE_SUFFIX: ${HOST_EXE_SUFFIX}")
+    #message(STATUS "C compiler  : ${CMAKE_C_COMPILER}")
+    #message(STATUS "C++ compiler: ${CMAKE_CXX_COMPILER}")
+    #message(STATUS "Size command: ${SIZE_COMMAND}")
+    #message(STATUS "Objcopy command: ${OBJCOPY_COMMAND}")
+    
+    message(STATUS "ToolChain Variables Set")
 
+endmacro()
