@@ -9,8 +9,8 @@
 cmake_minimum_required (VERSION 2.8)
 
 # Include all other files required
-include (CMake4Mbed_util)
 include (CMake4Mbed_mbed_targets)
+include (CMake4Mbed_util)
 
 # Location of the mbed source code root
 set (MBED_ROOT_SRC_DIR "${CMAKE4MBED_DIR}/deps/mbed/")
@@ -18,30 +18,7 @@ set (MBED_ROOT_SRC_DIR "${CMAKE4MBED_DIR}/deps/mbed/")
 # Allow the use of Assembler files
 enable_language(ASM)
 
-# It's best to hide all the details of setting up the variable SRCS in a CMake
-# macro. The macro can then be called in all the project CMake list files to add
-# sources.
-#
-# The macro first computes the path of the source file relative to the project
-# root for each argument. If the macro is invoked from inside a project sub
-# directory the new value of the variable SRCS needs to be propagated to the
-# parent folder by using the PARENT_SCOPE option.
-#
-# Source: http://stackoverflow.com/questions/7046956/populating-srcs-from-cmakelists-txt-in-subdirectories
-macro (add_sources)
-    file (RELATIVE_PATH _relPath "${CMAKE_SOURCE_DIR}" "${CMAKE_CURRENT_SOURCE_DIR}")
-    foreach (_src ${ARGN})
-        if (_relPath)
-            list (APPEND SRCS "${_relPath}/${_src}")
-        else()
-            list (APPEND SRCS "${_src}")
-        endif()
-    endforeach()
-    if (_relPath)
-        # propagate to parent directory
-        set (SRCS ${SRCS} PARENT_SCOPE)
-    endif()
-endmacro()
+
 
 
 

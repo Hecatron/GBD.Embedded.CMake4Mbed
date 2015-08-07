@@ -23,14 +23,28 @@ add_sources(
 	src/gcc4mbed.cpp
 )
 
-# Set the Output to a <ProjectName>.elf file
-set(PROJECT_ELF ${PROJECT_NAME}.elf)
-message(STATUS "Project elf target : ${PROJECT_ELF}")
+# Device independent cfags setup
+mbed_common_flags()
 
-add_executable(${PROJECT_ELF} ${SRCS})
+# Loop over all the mbed targets we need to build for
+foreach(MBED_USER_TARGET MBED_USER_TARGETS)
 
+    # Set the Output path to <TargetDir>/<ProjectName>.elf file
+    set(PROJECT_DEST "${MBED_USER_TARGET}/${PROJECT_NAME}.elf")
+	#set(PROJECT_DEST ${PROJECT_NAME}.elf) # TODO
 
+	message(STATUS "Mbed Target: ${MBED_USER_TARGET}")
+	message(STATUS "Elf Destination: ${PROJECT_DEST}")
 
-#message(STATUS "SRCS: ${SRCS}")
+    # Add the exe
+    add_executable(${PROJECT_ELF} ${SRCS})
 
-# TODO use the util script to output .hex / .bin files from the .elf
+	# TODO there's something wrong with MBED_USER_TARGET so the below never gets called
+
+	# Set the target properties
+	mbed_defines(PROJECT_ELF MBED_USER_TARGET)
+
+	# Output .hex / .bin files from the .elf
+	# TODO - see util script
+
+endforeach()
