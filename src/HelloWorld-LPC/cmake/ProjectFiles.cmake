@@ -26,32 +26,11 @@ add_sources(
 # Set the Output to a <ProjectName>.elf file
 set(PROJECT_ELF ${PROJECT_NAME}.elf)
 message(STATUS "Project elf target : ${PROJECT_ELF}")
-#add_executable(${PROJECT_ELF} ${SRCS})
+
+add_executable(${PROJECT_ELF} ${SRCS})
 
 
-# TODO:
 
-# Add a post-build dependency like printing size of the
-# resulting binary and copying to the target.
-#if (TOOLCHAIN STREQUAL "armcc")
-#    add_custom_command(
-#        TARGET ${MAIN_TARGET}
-#        COMMAND ${SIZE_COMMAND} ${MAIN_TARGET}
-#        COMMAND ${TOOLCHAIN_SYSROOT}/bin/fromelf --i32combined -o ${PROJECT_NAME}.hex ${MAIN_TARGET} # convert .elf to .hex (redundancy: only one of either .hex or .bin is needed)
-#        COMMAND ${TOOLCHAIN_SYSROOT}/bin/fromelf --bin -o ${PROJECT_NAME}.bin ${MAIN_TARGET} # convert .elf to .bin
-#        COMMAND srec_cat ${MBED_SRC_PATH}/targets/hal/TARGET_NORDIC/TARGET_MCU_NRF51822/Lib/s110_nrf51822_7_1_0/s110_nrf51822_7.1.0_softdevice.hex -intel ${PROJECT_NAME}.bin -binary -offset 0x16000 -o combined.hex -intel
-#        # follow this by copying the resulting combined.hex onto the target (possibly over USB)
-#    )
-#elseif(TOOLCHAIN STREQUAL "armgcc")
-#    if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-#        set(CMAKE_CXX_LINK_FLAGS "")
-#    endif()
-#    add_custom_command(
-#        TARGET ${MAIN_TARGET}
-#        COMMAND ${SIZE_COMMAND} ${MAIN_TARGET}
-#        COMMAND arm-none-eabi-objcopy -O ihex ${MAIN_TARGET} ${PROJECT_NAME}.hex # convert .elf to .hex (redundancy: only one of either .hex or .bin is needed)
-#        COMMAND arm-none-eabi-objcopy -O binary ${MAIN_TARGET} ${PROJECT_NAME}.bin # convert .elf to .hex
-#        COMMAND srec_cat ${MBED_SRC_PATH}/targets/hal/TARGET_NORDIC/TARGET_MCU_NRF51822/Lib/s110_nrf51822_7_1_0/s110_nrf51822_7.1.0_softdevice.hex -intel ${PROJECT_NAME}.bin -binary -offset 0x16000 -o combined.hex -intel
-#        # follow this by copying the resulting combined.hex onto the target (possibly over USB)
-#    )
-#endif()
+#message(STATUS "SRCS: ${SRCS}")
+
+# TODO use the util script to output .hex / .bin files from the .elf

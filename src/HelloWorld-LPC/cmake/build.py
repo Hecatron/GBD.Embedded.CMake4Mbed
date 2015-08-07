@@ -8,33 +8,48 @@ import sys, os, shutil, subprocess
 
 verbose = True
 
-try:
-    # Script / Source / Build directory
-    SCRIPTROOT = abspath(dirname(__file__))
-    SRCROOT = abspath(join(SCRIPTROOT,"../"))
-    BUILDROOT = abspath(join(SRCROOT,"Build"))
+# Options for build
+CMAKE_GENERATOR = "NMake Makefiles"
+BUILD_CMD = ["nmake"]
+CMAKE_TCFILE = "cmake/ToolChainOptions.cmake"
 
-    # Remove  / Re-Create Build Directory
+# Script / Source / Build directory
+SCRIPTROOT = abspath(dirname(__file__))
+SRCROOT = abspath(join(SCRIPTROOT,"../"))
+BUILDROOT = abspath(join(SRCROOT,"Build"))
+
+# Remove / Re-Create Build Directory
+def clean_build( build_root ):
     print("Cleaning Build Directory")
-    shutil.rmtree(BUILDROOT, ignore_errors=True)
-    if not os.path.exists(BUILDROOT):
-        os.makedirs(BUILDROOT)
+    shutil.rmtree(build_root, ignore_errors=True)
+    if not os.path.exists(build_root):
+        os.makedirs(build_root)
+
+# Run a command
+def run_cmd( cmdarray, workingdir ):
+    proc = subprocess.Popen(cmdarray, cwd=workingdir, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    proc_out, proc_err = proc.communicate()
+    print(proc_out)
+    print(proc_err)
+    if proc.returncode != 0:
+        raise RuntimeError("Failure to run command")
+    return
+
+# Main Script
+try:
+    # Clean Build Directory
+    clean_build(BUILDROOT)
 
     # Run CMake
-    print("Calling cmake")
-    cmake_opts = "-DCMAKE_TOOLCHAIN_FILE=cmake/ToolChainOptions.cmake"
-    print(cmake_opts + " " + SRCROOT + "\n")
+    print("Running cmake")
+    cmake_toolchain_opt = "-DCMAKE_TOOLCHAIN_FILE=" + CMAKE_TCFILE
+    cmake_gen_opt = "-G" + CMAKE_GENERATOR
+    print(cmake_toolchain_opt + " " + cmake_gen_opt + " " + SRCROOT + "\n")
+    run_cmd(["cmake", cmake_toolchain_opt, cmake_gen_opt, SRCROOT], BUILDROOT)
 
-    cmake_proc = subprocess.Popen(["cmake", cmake_opts, SRCROOT], cwd=BUILDROOT, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    cmake_out, cmake_err = cmake_proc.communicate()
-    print(cmake_out)
-    print(cmake_err)
-    if cmake_proc.returncode != 0:
-        raise RuntimeError("Failure to run cmake")
-
-    # TODO run make / ninja tools etc to build
-    print("TODO Building Sources")
-    # TODO
+    # run nmake / ninja tools etc to build
+    print("Building Sources")
+    run_cmd(BUILD_CMD, BUILDROOT)
 
 # Output any errors
 except Exception, e:
@@ -43,3 +58,6 @@ except Exception, e:
         traceback.print_exc(file=sys.stdout)
     print (e)
     sys.exit(1)
+
+
+

@@ -25,10 +25,10 @@
     <Xml Include="vsgdbconfig.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\gcc4mbed.c">
+    <ClCompile Include="src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\main.cpp">
+    <ClCompile Include="src\gcc4mbed.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

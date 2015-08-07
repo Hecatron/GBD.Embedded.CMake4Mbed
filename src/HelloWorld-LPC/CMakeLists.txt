@@ -7,8 +7,8 @@ cmake_minimum_required (VERSION 2.8)
 
 # Output the path to the toolchain file
 # The toolchain file is read in and processed before this script
-message(STATUS "CMAKE_TOOLCHAIN_FILE='${CMAKE_TOOLCHAIN_FILE}'")
-message(STATUS "")
+#message(STATUS "CMAKE_TOOLCHAIN_FILE='${CMAKE_TOOLCHAIN_FILE}'")
+#message(STATUS "")
 
 # Set options for CMake4Mbed
 include("${CMAKE_CURRENT_LIST_DIR}/cmake/BuildOptions.cmake")

@@ -82,7 +82,7 @@
     <Xml Include="vsgdbconfig.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\gcc4mbed.c" />
+    <ClCompile Include="src\gcc4mbed.cpp" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>

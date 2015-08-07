@@ -8,12 +8,9 @@
 # Declare minimum version of cmake required
 cmake_minimum_required (VERSION 2.8)
 
-# Setup the ToolChain Variables
-#include (CMake4Mbed_toolchain)
-#SetupToolChain()
-
 # Include all other files required
-#include (CMake4Mbed_cleanbuild)
+include (CMake4Mbed_util)
+include (CMake4Mbed_mbed_targets)
 
 # Location of the mbed source code root
 set (MBED_ROOT_SRC_DIR "${CMAKE4MBED_DIR}/deps/mbed/")
