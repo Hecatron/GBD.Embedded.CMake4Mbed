@@ -22,9 +22,8 @@ try:
 
     # Run CMake
     print("Calling cmake")
-    cmake_opts = "-D CMAKE_TOOLCHAIN_FILE=cmake/ToolChainOptions.cmake"
-    #cmake_opts = "--help"
-    print(cmake_opts)
+    cmake_opts = "-DCMAKE_TOOLCHAIN_FILE=cmake/ToolChainOptions.cmake"
+    print(cmake_opts + " " + SRCROOT + "\n")
 
     cmake_proc = subprocess.Popen(["cmake", cmake_opts, SRCROOT], cwd=BUILDROOT, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     cmake_out, cmake_err = cmake_proc.communicate()

@@ -42,5 +42,8 @@
     <None Include="cmake\ToolChainOptions.cmake">
       <Filter>cmake</Filter>
     </None>
+    <None Include="cmake\build.py">
+      <Filter>cmake</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -31,13 +31,6 @@ message(STATUS "Project elf target : ${PROJECT_ELF}")
 
 # TODO:
 
-############################################################################
-# By now, we've traversed all subdirectories and have collected everything that
-# needs to be built. We can define the build targets.
-############################################################################
-# add MbedTest as a build target depending on all the sources
-#add_executable(${MAIN_TARGET} ${SRCS})
-
 # Add a post-build dependency like printing size of the
 # resulting binary and copying to the target.
 #if (TOOLCHAIN STREQUAL "armcc")

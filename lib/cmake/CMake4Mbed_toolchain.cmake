@@ -4,8 +4,54 @@
 
 # ToolChain Macro's
 
-# This macro sets up the toolchain variables based on the set options
+# This macro sets up the toolchain variables for mbed
 macro(SetupToolChain)
+
+    # Bypass the internal checks for a compiler
+    include(CMakeForceCompiler)
+
+    # Set the target system processor to arm
+    set(CMAKE_SYSTEM_PROCESSOR arm)
+
+    # Generic is used for Embedded systems
+    set(CMAKE_SYSTEM_NAME Generic)
+
+    # We can't use CMAKE_EXECUTABLE_SUFFIX since we're cross compiling under Windows in some cases
+    # And this variable relates to the target instead of the host
+    # But we can use CMAKE_HOST_SYSTEM_NAME to determine if the toolchain files end in .exe
+
+    set(HOST_EXE_SUFFIX "")
+    if (CMAKE_HOST_SYSTEM_NAME STREQUAL "Windows")
+        set(HOST_EXE_SUFFIX ".exe")
+    endif()
+
+    # ToolChain directory
+    set(TOOLCHAIN_SYSROOT "${CMAKE4MBED_DIR}/deps/gcc-arm-none-eabi")
+
+    # Override toolchain exe's
+    CMAKE_FORCE_C_COMPILER   ("${TOOLCHAIN_SYSROOT}/bin/arm-none-eabi-gcc${HOST_EXE_SUFFIX}" GNU)
+    CMAKE_FORCE_CXX_COMPILER ("${TOOLCHAIN_SYSROOT}/bin/arm-none-eabi-g++${HOST_EXE_SUFFIX}" GNU)
+    set(SIZE_COMMAND          "${TOOLCHAIN_SYSROOT}/bin/arm-none-eabi-size${HOST_EXE_SUFFIX}")
+    set(OBJCOPY_COMMAND       "${TOOLCHAIN_SYSROOT}/bin/arm-none-eabi-objcopy${HOST_EXE_SUFFIX}")
+
+    message(STATUS "ToolChain Variables Set")
+    #message(STATUS "HOST_EXE_SUFFIX: ${HOST_EXE_SUFFIX}")
+    #message(STATUS "CMAKE_FORCE_C_COMPILER: ${CMAKE_FORCE_C_COMPILER}")
+    #message(STATUS "CMAKE_FORCE_CXX_COMPILER: ${CMAKE_FORCE_CXX_COMPILER}")
+    #message(STATUS "SIZE_COMMAND: ${SIZE_COMMAND}")
+    #message(STATUS "OBJCOPY_COMMAND: ${OBJCOPY_COMMAND}")
+
+endmacro()
+
+
+
+
+
+
+
+
+# This macro sets up the toolchain variables based on the set options
+macro(SetupToolChain2)
 
     # Custom 
     if (TOOLCHAIN STREQUAL "custom")
