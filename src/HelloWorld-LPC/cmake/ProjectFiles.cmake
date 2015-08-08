@@ -7,6 +7,9 @@
 
 # All Project specific values are below
 
+# I think we need another project earler on for the linker script assembler -> object
+# then link it into this project
+
 # The name of the project
 project (HelloWorld-LPC)
 
@@ -27,22 +30,22 @@ add_sources(
 mbed_common_flags()
 
 # Loop over all the mbed targets we need to build for
-foreach(MBED_USER_TARGET MBED_USER_TARGETS)
-
-    # Set the Output path to <TargetDir>/<ProjectName>.elf file
-    set(PROJECT_DEST "${MBED_USER_TARGET}/${PROJECT_NAME}.elf")
-	#set(PROJECT_DEST ${PROJECT_NAME}.elf) # TODO
-
+foreach(MBED_USER_TARGET ${MBED_USER_TARGETS})
 	message(STATUS "Mbed Target: ${MBED_USER_TARGET}")
+
+    # Set the cmake target name to <ProjectName>-<MBED_USER_TARGET>.elf file
+	set(PROJECT_DEST "${PROJECT_NAME}-${MBED_USER_TARGET}.elf")
+
+    # Add the exe / sources for the cmake target
+	add_executable(${PROJECT_DEST} ${SRCS})
+	
+	# Set the output directory for the cmake target
+	set_target_properties(${PROJECT_DEST} PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${MBED_USER_TARGET}")
+
 	message(STATUS "Elf Destination: ${PROJECT_DEST}")
 
-    # Add the exe
-    add_executable(${PROJECT_ELF} ${SRCS})
-
-	# TODO there's something wrong with MBED_USER_TARGET so the below never gets called
-
-	# Set the target properties
-	mbed_defines(PROJECT_ELF MBED_USER_TARGET)
+	# Add the mbed build command pre build of the target
+	mbed_buildcmd(${PROJECT_DEST} ${MBED_USER_TARGET})
 
 	# Output .hex / .bin files from the .elf
 	# TODO - see util script

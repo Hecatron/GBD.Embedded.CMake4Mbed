@@ -9,7 +9,7 @@
 cmake_minimum_required (VERSION 2.8)
 
 # Include all other files required
-include (CMake4Mbed_mbed_targets)
+include (CMake4Mbed_mbed)
 include (CMake4Mbed_util)
 
 # Location of the mbed source code root
