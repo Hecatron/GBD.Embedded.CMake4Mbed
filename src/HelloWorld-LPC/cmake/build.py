@@ -12,6 +12,7 @@ verbose = True
 CMAKE_GENERATOR = "NMake Makefiles"
 BUILD_CMD = ["nmake"]
 CMAKE_TCFILE = "cmake/ToolChainOptions.cmake"
+CMAKE_DEBUG = False
 
 # Script / Source / Build directory
 SCRIPTROOT = abspath(dirname(__file__))
@@ -44,8 +45,11 @@ try:
     print("Running cmake")
     cmake_toolchain_opt = "-DCMAKE_TOOLCHAIN_FILE=" + CMAKE_TCFILE
     cmake_gen_opt = "-G" + CMAKE_GENERATOR
-    print(cmake_toolchain_opt + " " + cmake_gen_opt + " " + SRCROOT + "\n")
-    run_cmd(["cmake", cmake_toolchain_opt, cmake_gen_opt, SRCROOT], BUILDROOT)
+    cmake_debug_opt = ""
+    if CMAKE_DEBUG:
+        cmake_debug_opt = "--debug-output --trace"
+    print(cmake_toolchain_opt + " " + cmake_gen_opt + " " + cmake_debug_opt + " " + SRCROOT + "\n")
+    run_cmd(["cmake", cmake_toolchain_opt, cmake_gen_opt, cmake_debug_opt, SRCROOT], BUILDROOT)
 
     # run nmake / ninja tools etc to build
     print("Building Sources")

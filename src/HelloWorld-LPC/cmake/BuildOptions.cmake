@@ -35,4 +35,4 @@ set(MBED_USER_FAT 0)
 set(MBED_USER_UBLOX 0)
 
 # If to give verbose output during mbed compile
-set(MBED_USER_VERBOSE 1)
+set(MBED_USER_VERBOSE 0)
