@@ -66,6 +66,7 @@ macro (mbed_buildcmd targarg devarg)
     # TODO other options in the gcc4mbed makefile like Debug / Release
     # Try setting the options in private_settings.py via env variables or additional parameters perhaps (assuming this doesn't interfere with the original script
     # may need to strip the additional params out of the options via the wrapper script
+    # look into monkey patching the options parse code
 
     string(REPLACE ";" " " MBED_COMPILE_OPTS_STR "${MBED_COMPILE_OPTS}")
     message(STATUS "MBED_COMPILE_OPTS: ${MBED_COMPILE_OPTS_STR}")

@@ -56,7 +56,7 @@ try:
     run_cmd(BUILD_CMD, BUILDROOT)
 
 # Output any errors
-except Exception, e:
+except Exception as e:
     if verbose:
         import traceback
         traceback.print_exc(file=sys.stdout)

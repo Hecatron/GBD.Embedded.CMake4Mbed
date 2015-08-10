@@ -8,64 +8,74 @@ try:
 except ImportError:
     import xml.etree.ElementTree as ET
 
+import os
 from os.path import join, abspath, dirname
+from scripts.dep_sources import DepSource
+from scripts.script_logs import ScriptLogs
 
 # XML Settings for Download of Depends
 class DependSettings(object):
+
     def __init__(self):
         """Default Class Constructor"""
-        super(self.__class__, self).__init__()
-        
+        super().__init__()
+        self.log = ScriptLogs.getlogger()
+
+        # XML Root Tag
+        self.xmlroot = None
+
         # Directory properties
         self.DepsDirectory = ""
         self.ArchiveDirectory = ""
-
-        # ASF Properties
-        self.ASFDirectory = ""
-        self.ASFFile = ""
-
-        # GCC Properties
         self.GCCVersion = ""
-        self.GCCFileName = ""
-        self.GCCUrl = ""
-        self.GCCRootDir = ""
 
-    @staticmethod
-    def loadxml(filepath):
-        ret = DependSettings()
-        """Load Xml File into Settings class"""
+        # List of Sources
+        self.sources = []
+
+    def read_element(self, tag):
+        """Read XML Value"""
+        nextval = next(self.xmlroot.iter(tag), None)
+        if nextval == None : raise ValueError('Element not found: ' + tag)
+        return nextval.text
+
+    def loadxml(self, filepath):
+        """Load XML"""
+        # Load in the xml
         tree = ET.ElementTree(file=filepath)
-        root = tree.getroot()
-        if root.tag != 'DependSettings':
+        self.xmlroot = tree.getroot()
+        if self.xmlroot.tag != 'DependSettings':
             raise ValueError('Root Element is not DependSettings')
 
         # Directory Settings
-        ret.DepsDirectory = DependSettings.read_element(root, 'DepsDirectory')
-        ret.DepsDirectory = abspath(ret.DepsDirectory)
-        ret.ArchiveDirectory = DependSettings.read_element(root, 'ArchiveDirectory')
-        ret.ArchiveDirectory = join(ret.DepsDirectory, ret.ArchiveDirectory)
-        
-        # ASF Settings
-        ret.ASFDirectory = DependSettings.read_element(root, 'ASFDirectory')
-        ret.ASFDirectory = join(ret.DepsDirectory, ret.ASFDirectory)
-        ret.ASFFile = DependSettings.read_element(root, 'ASFFile')
+        self.DepsDirectory = self.read_element('DepsDirectory')
+        self.DepsDirectory = abspath(self.DepsDirectory)
+        self.ArchiveDirectory = self.read_element('ArchiveDirectory')
+        self.ArchiveDirectory = join(self.DepsDirectory, self.ArchiveDirectory)
+        self.GCCVersion = self.read_element('GCCVersion')
 
-        # GCC Settings
-        ret.GCCVersion = DependSettings.read_element(root, 'GCCVersion')
-        ret.GCCFileName = DependSettings.read_element(root, 'GCCFileName')
-        ret.GCCUrl = DependSettings.read_element(root, 'GCCUrl')
-        ret.GCCRootDir = DependSettings.read_element(root, 'GCCRootDir')
-        ret.GCCRootDir = abspath(ret.GCCRootDir)
+        # Set the Archive directory for downloaded sources
+        DepSource.ArchiveDir = self.ArchiveDirectory
+        # Set the root Extract directory for extracting sources
+        DepSource.RootExtractDir = self.DepsDirectory
 
+        # Load in the list of download sources
+        self.sources = DepSource.parsexml(self.xmlroot)
+        return
 
+    def download(self):
+        """Download Sources"""
+        for source in self.sources:
+            source.download()
+        return
 
+    def extract(self):
+        """Extract Sources"""
+        for source in self.sources:
+            source.extract()
 
-        #ret.DepsDirectory = next(root.iter('DepsDirectory'), None)
-        #if not ret.DepsDirectory 
-        return ret
+        # Check for ASF Sources
+        if not os.path.exists(join(self.ArchiveDirectory, "")):
+            log.warn("ASF Directory not detected")
 
-    @staticmethod
-    def read_element(root, tag):
-        nextval = next(root.iter(tag), None)
-        if nextval == None : raise ValueError('Element not found: ' + tag)
-        return nextval.text
+        # TODO issue warning for missing ASF sources
+        return

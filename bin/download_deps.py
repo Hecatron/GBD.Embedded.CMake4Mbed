@@ -1,27 +1,51 @@
-﻿#! /usr/bin/env python2
+﻿#! /usr/bin/env python3
 """
 This script can be used to download depends required for cmake mbed
 """
 
 from scripts.dep_settings import DependSettings
 from os.path import join, abspath, dirname
-import wget, sys
+from scripts.script_logs import ScriptLogs
+import wget, sys, platform, logging
 
 verbose = True
 
 try:
+
+    # Setup logging
+    ScriptLogs.LogLevel = logging.DEBUG
+    ScriptLogs.setup()
+    log = ScriptLogs.getlogger()
+
     ROOT = abspath(dirname(__file__))
-    SETTINGS_PATH = abspath('DependSettings.xml')
+    osplatform = platform.system()
+
+    if osplatform == "Windows":
+        SETTINGS_PATH = abspath('DependSettings_win32.xml')
+    elif osplatform == "Linux":
+        SETTINGS_PATH = abspath('DependSettings_linux.xml')
+    else:
+        log.critical("Unsupported platform")
+        sys.exit(1)
+    log.info("Platform identified as: " + osplatform)
 
     # Load in the Settings from an xml file
-    Setts = DependSettings.loadxml(SETTINGS_PATH)
+    Setts = DependSettings()
+    Setts.loadxml(SETTINGS_PATH)
 
-    wget.download('https://raw.githubusercontent.com/grbd/GBD.Embedded.DotMbed/master/License.md', out=ROOT)
+    # Download all sources
+    Setts.download()
+    
+    # Extract Sources
+    Setts.extract()
+
+    # Depends Setup Complete
+    log.info("Download of Depends Complete")
 
 # Output any errors
-except Exception, e:
+except Exception as e:
+    log.critical (e)
     if verbose:
         import traceback
         traceback.print_exc(file=sys.stdout)
-    print (e)
     sys.exit(1)

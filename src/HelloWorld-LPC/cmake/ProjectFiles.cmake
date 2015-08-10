@@ -26,7 +26,10 @@ add_sources(
 	src/gcc4mbed.cpp
 )
 
+# TODO can we move some of the below into a function of some kind?
+
 # Device independent cfags setup
+# TODO extract from gcc4make / mbed
 mbed_common_flags()
 
 # Loop over all the mbed targets we need to build for
@@ -46,6 +49,9 @@ foreach(MBED_USER_TARGET ${MBED_USER_TARGETS})
 
 	# Add the mbed build command pre build of the target
 	mbed_buildcmd(${PROJECT_DEST} ${MBED_USER_TARGET})
+
+	# TODO link project to mbed object
+	# TODO Device specific CFlags for main project
 
 	# Output .hex / .bin files from the .elf
 	# TODO - see util script
