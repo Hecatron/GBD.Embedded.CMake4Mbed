@@ -6,14 +6,14 @@
     <ProjectGuid>{337d3f0b-8278-434e-9042-a920907e6dfa}</ProjectGuid>
     <ProjectHome>
     </ProjectHome>
-    <StartupFile>..\..\..\workspace_tools\make.py</StartupFile>
-    <SearchPath>..\..\..\..\deps\mbed\</SearchPath>
-    <WorkingDirectory>..\..\..\workspace_tools\</WorkingDirectory>
+    <StartupFile>..\..\..\mbed\build.py</StartupFile>
+    <SearchPath>..\..\..\..\deps\mbed\;..\..\..\mbed\;..\..\..\</SearchPath>
+    <WorkingDirectory>..\..\..\mbed\</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <Name>mbed_build</Name>
     <RootNamespace>mbed_build</RootNamespace>
     <LaunchProvider>Standard Python launcher</LaunchProvider>
-    <CommandLineArguments>-m ARDUINODUE -t GCC_ARM</CommandLineArguments>
+    <CommandLineArguments>-m LPC1347 -t GCC_ARM --builddir ../../build</CommandLineArguments>
     <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
     <IsWindowsApplication>False</IsWindowsApplication>
     <InterpreterId>{2af0f10d-7135-4994-9156-5d01c9c11b7e}</InterpreterId>
@@ -337,23 +337,17 @@
     <Compile Include="..\..\..\..\deps\mbed\workspace_tools\__init__.py">
       <Link>mbedscripts\__init__.py</Link>
     </Compile>
-    <Compile Include="..\..\workspace_tools\build.py">
+    <Compile Include="..\..\..\mbed\build.py">
       <Link>overridescripts\build.py</Link>
     </Compile>
-    <Compile Include="..\..\workspace_tools\common.py">
-      <Link>overridescripts\common.py</Link>
+    <Compile Include="..\..\..\mbed\patch_buildimports.py">
+      <Link>overridescripts\patch_buildimports.py</Link>
     </Compile>
-    <Compile Include="..\..\workspace_tools\make.py">
-      <Link>overridescripts\make.py</Link>
+    <Compile Include="..\..\..\mbed\patch_buildopts.py">
+      <Link>overridescripts\patch_buildopts.py</Link>
     </Compile>
-    <Compile Include="..\..\workspace_tools\paths.py">
-      <Link>overridescripts\paths.py</Link>
-    </Compile>
-    <Compile Include="..\..\workspace_tools\private_settings.py">
+    <Compile Include="..\..\..\mbed\private_settings.py">
       <Link>overridescripts\private_settings.py</Link>
-    </Compile>
-    <Compile Include="..\..\workspace_tools\targets.py">
-      <Link>overridescripts\targets.py</Link>
     </Compile>
   </ItemGroup>
   <ItemGroup>
