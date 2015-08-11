@@ -3,7 +3,7 @@ Module for dependency source downloads
 """
 
 import wget, os, sys, glob, shutil
-import zipfile
+import zipfile, hashlib
 from scripts.script_logs import ScriptLogs
 
 PY3K = sys.version_info >= (3, 0)
@@ -23,8 +23,10 @@ class DepSource(object):
     def __init__(self):
         self.url = ""
         self.destsubdir = ""
+        self.md5hash = ""
         self.arch_filename = ""
         self.arch_filepath = ""
+        self.log = ScriptLogs.getlogger()
 
     def download(self):
         return
@@ -34,7 +36,7 @@ class DepSource(object):
             return
 
         # Create the extraction directory
-        print("Extracting: " + self.arch_filename + " To: " + self.destsubdir)
+        self.log.info("Extracting: " + self.arch_filename + " To: " + self.destsubdir)
         extractdir = os.path.abspath(os.path.join(DepSource.RootExtractDir, self.destsubdir))
         if os.path.exists(extractdir):
             shutil.rmtree(extractdir)
@@ -54,19 +56,32 @@ class DepSource(object):
     @staticmethod
     def parsexml(root):
         ret = []
+
         for source in root.findall('FileExtract'):
-            ret.append(FileExtract(
+            newsource = FileExtract(
                 source.find('SrcFile').text,
-                source.find('DestSubDir').text))
+                source.find('DestSubDir').text)
+            if source.find('Md5Hash') != None:
+                newsource.md5hash = source.find('Md5Hash').text
+            ret.append(newsource)
+
         for source in root.findall('HttpSource'):
-            ret.append(HttpSource(
+            newsource = HttpSource(
                 source.find('Url').text,
-                source.find('DestSubDir').text))
+                source.find('DestSubDir').text)
+            if source.find('Md5Hash') != None:
+                newsource.md5hash = source.find('Md5Hash').text
+            ret.append(newsource)
+
         for source in root.findall('GitHubZipSource'):
-            ret.append(GitHubZipSource(
+            newsource = GitHubZipSource(
                 source.find('Url').text,
                 source.find('DestSubDir').text,
-                source.find('CommitId').text))
+                source.find('CommitId').text)
+            if source.find('Md5Hash') != None:
+                newsource.md5hash = source.find('Md5Hash').text
+            ret.append(newsource)
+
         return ret
 
 # Http Download Source
@@ -100,19 +115,29 @@ class HttpSource(DepSource):
         self.arch_filepath = os.path.join(destdir,self.arch_filename)
 
         # Download file if it doesn't exist
-        print("Downloading :" + self.arch_filename)
+        self.log.info("Downloading :" + self.arch_filename)
         if os.path.exists(self.arch_filepath):
-            print("File already downloaded / Skipping: " + self.arch_filename)
-            return
-        wget.download(self.url, out=destdir)
-        print('\n' + "File Downloaded")
+            self.log.warn("File already downloaded / Skipping: " + self.arch_filename)
+        else:
+            wget.download(self.url, out=destdir)
+            self.log.info('\n' + "File Downloaded")
+
+        # Check the MD5 Hash
+        if self.md5hash:
+            self.log.info("Calculating downloaded file hash")
+            src_md5sum = hashlib.md5(open(self.arch_filepath,'rb').read()).hexdigest()
+            self.log.info("File MD5 Hash is: " + src_md5sum)
+            if self.md5hash == src_md5sum:
+                self.log.info("MD5 Hash matches Okay: " + self.md5hash)
+            else:
+                self.log.error("MD5 Hash does not match: " + self.md5hash)
         return
 
     def extract(self):
         # Call base class extraction
         super().extract()
         # Remove the downloaded zip
-        os.remove(self.arch_filepath)
+        #os.remove(self.arch_filepath)
         return
 
 # GitHub Download Source as zip
@@ -148,7 +173,7 @@ class GitHubZipSource(HttpSource):
         shutil.rmtree(olddir)
 
         # Remove the downloaded zip
-        os.remove(self.arch_filepath)
+        #os.remove(self.arch_filepath)
         return
      
 # File Extract Source for file that has to be manually downloaded into the Archive directory

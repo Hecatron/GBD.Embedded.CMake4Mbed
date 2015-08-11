@@ -14,7 +14,8 @@ class ScriptLogs(object):
 
     @staticmethod
     def setup():
-        ScriptLogs.LogFormat = "  %(log_color)s%(levelname)-8s%(reset)s | %(log_color)s%(message)s%(reset)s"
+        #ScriptLogs.LogFormat = "  %(log_color)s%(levelname)-8s%(reset)s | %(log_color)s%(message)s%(reset)s"
+        ScriptLogs.LogFormat = "%(log_color)s[%(asctime)s]:%(levelname)-7s:%(message)s"
         logging.root.setLevel(ScriptLogs.LogLevel)
         formatter = ColoredFormatter(ScriptLogs.LogFormat)
         ScriptLogs.LogStream = logging.StreamHandler()

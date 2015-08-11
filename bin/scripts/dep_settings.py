@@ -8,7 +8,7 @@ try:
 except ImportError:
     import xml.etree.ElementTree as ET
 
-import os
+import os, shutil
 from os.path import join, abspath, dirname
 from scripts.dep_sources import DepSource
 from scripts.script_logs import ScriptLogs
@@ -74,8 +74,25 @@ class DependSettings(object):
             source.extract()
 
         # Check for ASF Sources
-        if not os.path.exists(join(self.ArchiveDirectory, "")):
-            log.warn("ASF Directory not detected")
+        if not os.path.exists(join(self.DepsDirectory, "atmel-asf")):
+            self.log.warn("There was no Atmel ASF Archive file found")
+            self.log.warn("asf is not required but you can manually download the file from http://www.atmel.com/tools/avrsoftwareframework.aspx?tab=overview for Atmel Source")
+            self.log.warn("So far this is only used for porting mbed to sam based mcu's")
+        else:
+            self.moveasfdir()
+        return
 
-        # TODO issue warning for missing ASF sources
+    def moveasfdir(self):
+        """Move ASF sub directory"""
+        asfdir = os.path.abspath(join(self.DepsDirectory, "atmel-asf"))
+        olddir = asfdir + "_old"
+        if os.path.exists(olddir):
+            shutil.rmtree(olddir)
+        os.rename(asfdir, olddir)
+        
+        # Relocate the inner directory
+        innerdir = os.listdir(olddir)[0]
+        innerdir = os.path.join(olddir, innerdir)
+        shutil.move(innerdir ,asfdir)
+        shutil.rmtree(olddir)
         return
