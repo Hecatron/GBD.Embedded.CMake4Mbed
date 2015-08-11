@@ -4,12 +4,13 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>9a4020ce-2cfc-45aa-9962-06d3534f706f</ProjectGuid>
-    <ProjectHome>.</ProjectHome>
-    <StartupFile>..\..\..\src\HelloWorld-LPC\cmake\build.py</StartupFile>
-    <SearchPath>..\..\..\src\HelloWorld-LPC\cmake\</SearchPath>
-    <WorkingDirectory>..\..\..\src\HelloWorld-LPC\cmake\</WorkingDirectory>
+    <ProjectHome>
+    </ProjectHome>
+    <StartupFile>..\..\..\..\src\HelloWorld-LPC\cmake\build.py</StartupFile>
+    <SearchPath>..\..\..\..\src\HelloWorld-LPC\cmake\</SearchPath>
+    <WorkingDirectory>..\..\..\..\src\HelloWorld-LPC\cmake\</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>cmake4mbed_build</Name>
+    <Name>HelloWorld-LPC</Name>
     <RootNamespace>cmake4mbed_build</RootNamespace>
     <IsWindowsApplication>False</IsWindowsApplication>
     <InterpreterId>{2af0f10d-7135-4994-9156-5d01c9c11b7e}</InterpreterId>
@@ -24,7 +25,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\..\..\src\HelloWorld-LPC\cmake\build.py">
+    <Compile Include="..\..\..\..\src\HelloWorld-LPC\cmake\build.py">
       <Link>build.py</Link>
     </Compile>
   </ItemGroup>
