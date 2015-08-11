@@ -6,7 +6,8 @@
     <ProjectGuid>72e5c92f-c832-4498-b515-0755ae22ad63</ProjectGuid>
     <ProjectHome>
     </ProjectHome>
-    <StartupFile>..\..\..\mbed\export_flags.py</StartupFile>
+    <StartupFile>
+    </StartupFile>
     <SearchPath>..\..\..\;..\..\..\scripts\;..\..\..\mbed\</SearchPath>
     <WorkingDirectory>..\..\..\</WorkingDirectory>
     <OutputPath>.</OutputPath>

@@ -1,6 +1,6 @@
-﻿#! /usr/bin/env python2
+#! /usr/bin/env python2
 """
-This file acts as an overlay over the top of the original build.py script
+This file acts as an overlay over the top of the original make.py script
 """
 
 import sys, os
@@ -16,4 +16,4 @@ import mbed.patch_buildopts
 
 # Include the original build.py script
 # nothing else will run after calling this, this needs to be the last line
-execfile("../../deps/mbed/workspace_tools/build.py")
+execfile("../../deps/mbed/workspace_tools/make.py")
