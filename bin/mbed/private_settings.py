@@ -22,5 +22,3 @@ if args.builddir != None:
 
 # Specfy the path to the gcc executables
 GCC_ARM_PATH = os.path.abspath("../../deps/gcc-arm-none-eabi/bin")
-
-print("done")

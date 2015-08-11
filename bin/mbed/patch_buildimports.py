@@ -19,7 +19,8 @@ class ImportOverride(object):
         self.module_names = args[0]
  
     def find_module(self, fullname, path=None):
-        if fullname in self.module_names[0]:
+        tmptuple = [item for item in self.module_names if item[0] == fullname]
+        if tmptuple != []:
             self.path = path
             return self
         return None
@@ -37,5 +38,7 @@ class ImportOverride(object):
 # Specify which modules to override with the ones located within this mbed directory
 MODULE_OVERRIDES = (
     ('workspace_tools.private_settings', 'private_settings.py'),
+    ('workspace_tools.paths', 'private_paths.py'),
+    ('workspace_tools.targets', 'private_targets.py'),
 );
 sys.meta_path.append(ImportOverride(MODULE_OVERRIDES))

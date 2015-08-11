@@ -13,7 +13,7 @@
     <Name>mbed_build</Name>
     <RootNamespace>mbed_build</RootNamespace>
     <LaunchProvider>Standard Python launcher</LaunchProvider>
-    <CommandLineArguments>-m LPC1347 -t GCC_ARM --builddir ../../build</CommandLineArguments>
+    <CommandLineArguments>-m TESTTARGET -t GCC_ARM --builddir ../../build</CommandLineArguments>
     <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
     <IsWindowsApplication>False</IsWindowsApplication>
     <InterpreterId>{2af0f10d-7135-4994-9156-5d01c9c11b7e}</InterpreterId>
@@ -346,8 +346,14 @@
     <Compile Include="..\..\..\mbed\patch_buildopts.py">
       <Link>overridescripts\patch_buildopts.py</Link>
     </Compile>
+    <Compile Include="..\..\..\mbed\private_paths.py">
+      <Link>overridescripts\private_paths.py</Link>
+    </Compile>
     <Compile Include="..\..\..\mbed\private_settings.py">
       <Link>overridescripts\private_settings.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\mbed\private_targets.py">
+      <Link>overridescripts\private_targets.py</Link>
     </Compile>
   </ItemGroup>
   <ItemGroup>
