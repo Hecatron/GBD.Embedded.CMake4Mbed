@@ -1,7 +1,7 @@
 @echo off
 
 REM Bin Directory for the LPCXpresso Tools
-set SeggerBinDir=C:\Program Files (x86)\SEGGER\JLink_V500j
+set SeggerBinDir=C:\Program Files (x86)\SEGGER\JLink_V500l
 
 REM Which flash tool to use - LPC-Link1 V1.3 - LPC1347
 set SeggerGdbBin="%SeggerBinDir%\JLinkGDBServer.exe"

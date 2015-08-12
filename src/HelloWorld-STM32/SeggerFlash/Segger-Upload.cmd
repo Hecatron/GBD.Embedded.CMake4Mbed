@@ -4,7 +4,7 @@ REM which elf file to upload
 set ELFFile="D:\SourceControl\GitRepos\GBD.Embedded.CMake4Mbed\src\HelloWorld-STM32\NUCLEO_F103RB\HelloWorld-STM32.elf"
 
 REM Bin Directory for the Segger Tools
-set SeggerBinDir=C:\Program Files (x86)\SEGGER\JLink_V500j
+set SeggerBinDir=C:\Program Files (x86)\SEGGER\JLink_V500l
 
 REM Which flash tool to use
 set SeggerFlashBin="%SeggerBinDir%\Jlink.exe"

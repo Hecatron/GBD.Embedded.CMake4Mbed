@@ -1,14 +1,12 @@
-﻿#! /usr/bin/env python3
+﻿#!python3
 """
 This script can be used to download depends required for cmake mbed
 """
 
-from scripts.dep_settings import DependSettings
-from os.path import join, abspath, dirname
+import sys, platform, logging
+from scripts.dep_setts import DependSettings
 from scripts.script_logs import ScriptLogs
-import wget, sys, platform, logging
-
-verbose = True
+from os.path import abspath, dirname
 
 try:
 
@@ -33,19 +31,16 @@ try:
     Setts = DependSettings()
     Setts.loadxml(SETTINGS_PATH)
 
-    # Download all sources
-    Setts.download()
+    # Download and Extract all sources
+    Setts.getdeps()
     
-    # Extract Sources
-    Setts.extract()
-
     # Depends Setup Complete
     log.info("Download of Depends Complete")
 
 # Output any errors
 except Exception as e:
     log.critical (e)
-    if verbose:
+    if ScriptLogs.LogLevel == logging.DEBUG:
         import traceback
         traceback.print_exc(file=sys.stdout)
     sys.exit(1)

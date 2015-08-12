@@ -10,10 +10,7 @@ basic scripts just to get things working
 I will need to redo most of this, this is just a demo / test
 next step is to test this with VS2015 GDB
 
-to download the depends required
-
-1. run /bin/DownloadDeps.cmd to download .Net depends for the scripts into /deps/dotnet
-2. run /bin/DownloadToolChain.cmd this is a .Net script that will download gcc / mbed / toolchain deps into the /deps/ directory
+to download the deps required run bin/download_deps.py
 
 to compile the sources:
 
@@ -35,3 +32,11 @@ the device name will change to "LPC-Link Probe v1.3"
 5. run "LPCFlash/LPC-Link1-GDB-Client.cmd" to connect to the server via gdb
 use "continue" and Ctrl-C to start and stop the device
 use detach to break from the session
+
+
+Hard Coded paths:
+
+TODO
+There are some hard coded paths within the visual studio project properties
+for the include paths
+this shouldn't yet influence the build system

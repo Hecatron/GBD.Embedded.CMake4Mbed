@@ -1,9 +1,8 @@
 <LocalLaunchOptions xmlns="http://schemas.microsoft.com/vstudio/MDDDebuggerOptions/2014"
  TargetArchitecture="ARM"
- MIDebuggerPath="D:\SourceControl\GitRepos\GBD.Embedded.DotMbed\deps\gcc-arm-none-eabi\bin\arm-none-eabi-gdb.exe"
- MIDebuggerServerAddress="127.0.0.1:3333"                    
+ MIDebuggerPath="D:\SourceControl\GitRepos\GBD.Embedded.CMake4Mbed\deps\gcc-arm-none-eabi\bin\arm-none-eabi-gdb.exe"                  
  MIMode="gdb"
- ExePath="D:\SourceControl\GitRepos\GBD.Embedded.DotMbed\src\HelloWorld-LPC\LPC1347\HelloWorld.elf"
+ ExePath="D:\SourceControl\GitRepos\GBD.Embedded.CMake4Mbed\src\HelloWorld-LPC-Old\LPC1347\HelloWorld.elf"
  >
 
   <SetupCommands>

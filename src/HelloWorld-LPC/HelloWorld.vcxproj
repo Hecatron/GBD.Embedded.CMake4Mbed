@@ -65,8 +65,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <NMakeOutput>HelloWorld.exe</NMakeOutput>
     <NMakePreprocessorDefinitions>WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
-    <IncludePath>D:\SourceControl\GitRepos\GBD.Embedded.DotMbed\deps\gcc-arm-none-eabi\arm-none-eabi\include;D:\SourceControl\GitRepos\GBD.Embedded.DotMbed\deps\mbed\libraries\mbed\api;D:\SourceControl\GitRepos\GBD.Embedded.DotMbed\deps\mbed\build\mbed\TARGET_LPC1347;D:\SourceControl\GitRepos\GBD.Embedded.DotMbed\deps\mri\include</IncludePath>
-    <NMakeIncludeSearchPath>D:\SourceControl\GitRepos\GBD.Embedded.DotMbed\deps\gcc-arm-none-eabi\arm-none-eabi\include;D:\SourceControl\GitRepos\GBD.Embedded.DotMbed\deps\mbed\libraries\mbed\api;D:\SourceControl\GitRepos\GBD.Embedded.DotMbed\deps\mbed\build\mbed\TARGET_LPC1347;D:\SourceControl\GitRepos\GBD.Embedded.DotMbed\deps\mri\include;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
+    <IncludePath>D:\SourceControl\GitRepos\GBD.Embedded.CMake4Mbed\deps\gcc-arm-none-eabi\arm-none-eabi\include;D:\SourceControl\GitRepos\GBD.Embedded.CMake4Mbed\deps\mbed\libraries\mbed\api;D:\SourceControl\GitRepos\GBD.Embedded.CMake4Mbed\deps\mbed\build\mbed\TARGET_LPC1347;D:\SourceControl\GitRepos\GBD.Embedded.CMake4Mbed\deps\mri\include</IncludePath>
+    <NMakeIncludeSearchPath>D:\SourceControl\GitRepos\GBD.Embedded.CMake4Mbed\deps\gcc-arm-none-eabi\arm-none-eabi\include;D:\SourceControl\GitRepos\GBD.Embedded.CMake4Mbed\deps\mbed\libraries\mbed\api;D:\SourceControl\GitRepos\GBD.Embedded.CMake4Mbed\deps\mbed\build\mbed\TARGET_LPC1347;D:\SourceControl\GitRepos\GBD.Embedded.CMake4Mbed\deps\mri\include;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <NMakeOutput>HelloWorld.exe</NMakeOutput>
@@ -79,7 +79,9 @@
     <Text Include="readme.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Xml Include="vsgdbconfig.xml" />
+    <Xml Include="vsgdbconfig.xml">
+      <SubType>Designer</SubType>
+    </Xml>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\gcc4mbed.cpp" />

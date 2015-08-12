@@ -862,7 +862,7 @@ Disassembly of section .text:
 00000800 <_write>:
      800:	2802      	cmp	r0, #2
      802:	dc12      	bgt.n	82a <_write+0x2a>
-     804:	4b0e      	ldr	r3, [pc, #56]	; (840 <_write+0x40>)
+     804:	4b0e      	ldr	r3, [pc, #56]	; (840 <Heap_Size+0x40>)
      806:	b570      	push	{r4, r5, r6, lr}
      808:	681b      	ldr	r3, [r3, #0]
      80a:	460c      	mov	r4, r1
@@ -872,13 +872,13 @@ Disassembly of section .text:
      814:	19a5      	adds	r5, r4, r6
      816:	b136      	cbz	r6, 826 <_write+0x26>
      818:	f814 1b01 	ldrb.w	r1, [r4], #1
-     81c:	4809      	ldr	r0, [pc, #36]	; (844 <_write+0x44>)
+     81c:	4809      	ldr	r0, [pc, #36]	; (844 <Heap_Size+0x44>)
      81e:	f7ff ff71 	bl	704 <serial_putc>
      822:	42ac      	cmp	r4, r5
      824:	d1f8      	bne.n	818 <_write+0x18>
      826:	4630      	mov	r0, r6
      828:	bd70      	pop	{r4, r5, r6, pc}
-     82a:	4b07      	ldr	r3, [pc, #28]	; (848 <_write+0x48>)
+     82a:	4b07      	ldr	r3, [pc, #28]	; (848 <Heap_Size+0x48>)
      82c:	3803      	subs	r0, #3
      82e:	f853 0020 	ldr.w	r0, [r3, r0, lsl #2]
      832:	b110      	cbz	r0, 83a <_write+0x3a>

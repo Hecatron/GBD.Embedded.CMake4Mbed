@@ -8,16 +8,15 @@ try:
 except ImportError:
     import xml.etree.ElementTree as ET
 
-import os, shutil
-from os.path import join, abspath, dirname
-from scripts.dep_sources import DepSource
+from os.path import join, abspath, exists
 from scripts.script_logs import ScriptLogs
+from scripts.dep_src_base import DepSource
 
 # XML Settings for Download of Depends
 class DependSettings(object):
 
     def __init__(self):
-        """Default Class Constructor"""
+        """Dependency Settings"""
         super().__init__()
         self.log = ScriptLogs.getlogger()
 
@@ -33,7 +32,7 @@ class DependSettings(object):
         self.sources = []
 
     def read_element(self, tag):
-        """Read XML Value"""
+        """Read XML Value Element"""
         nextval = next(self.xmlroot.iter(tag), None)
         if nextval == None : raise ValueError('Element not found: ' + tag)
         return nextval.text
@@ -62,37 +61,33 @@ class DependSettings(object):
         self.sources = DepSource.parsexml(self.xmlroot)
         return
 
-    def download(self):
-        """Download Sources"""
+    def getdeps(self):
+        """Download and Extract Sources"""
         for source in self.sources:
-            source.download()
-        return
+            self.log.info("")
+            self.log.info("#####################################################")
 
-    def extract(self):
-        """Extract Sources"""
-        for source in self.sources:
-            source.extract()
+            # Skip anything already extracted
+            extractdir = abspath(join(DepSource.RootExtractDir, source.destsubdir))
+            if exists(extractdir):
+                self.log.warn("Deps Subdir: " + source.destsubdir + " already exists, skipping")
+                continue
+
+            extracted = False
+            downloaded = source.download()
+            if downloaded == False:
+                self.log.error("Download Failed")
+            else:
+                extracted = source.extract()
+
+            # Remove the archive file
+            if source.destsubdir != "atmel-asf":
+                source.remove_archivefile()
 
         # Check for ASF Sources
-        if not os.path.exists(join(self.DepsDirectory, "atmel-asf")):
+        if not exists(join(self.DepsDirectory, "atmel-asf")):
             self.log.warn("There was no Atmel ASF Archive file found")
-            self.log.warn("asf is not required but you can manually download the file from http://www.atmel.com/tools/avrsoftwareframework.aspx?tab=overview for Atmel Source")
+            self.log.warn("asf is not required but you can manually download the below file for the Atmel Source")
+            self.log.warn("http://www.atmel.com/tools/avrsoftwareframework.aspx?tab=overview")
             self.log.warn("So far this is only used for porting mbed to sam based mcu's")
-        else:
-            self.moveasfdir()
-        return
-
-    def moveasfdir(self):
-        """Move ASF sub directory"""
-        asfdir = os.path.abspath(join(self.DepsDirectory, "atmel-asf"))
-        olddir = asfdir + "_old"
-        if os.path.exists(olddir):
-            shutil.rmtree(olddir)
-        os.rename(asfdir, olddir)
-        
-        # Relocate the inner directory
-        innerdir = os.listdir(olddir)[0]
-        innerdir = os.path.join(olddir, innerdir)
-        shutil.move(innerdir ,asfdir)
-        shutil.rmtree(olddir)
         return
