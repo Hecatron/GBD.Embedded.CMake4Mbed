@@ -8,6 +8,7 @@ try:
 except ImportError:
     import xml.etree.ElementTree as ET
 
+import platform
 from os.path import join, abspath, exists
 from scripts.script_logs import ScriptLogs
 from scripts.dep_src_base import DepSource
@@ -19,6 +20,9 @@ class DependSettings(object):
         """Dependency Settings"""
         super().__init__()
         self.log = ScriptLogs.getlogger()
+
+        # Path to the config file
+        self.ConfigPath = None
 
         # XML Root Tag
         self.xmlroot = None
@@ -37,13 +41,13 @@ class DependSettings(object):
         if nextval == None : raise ValueError('Element not found: ' + tag)
         return nextval.text
 
-    def loadxml(self, filepath):
+    def loadxml(self):
         """Load XML"""
         # Load in the xml
-        tree = ET.ElementTree(file=filepath)
+        tree = ET.ElementTree(file=self.ConfigPath)
         self.xmlroot = tree.getroot()
-        if self.xmlroot.tag != 'DependSettings':
-            raise ValueError('Root Element is not DependSettings')
+        if self.xmlroot.tag != 'Settings':
+            raise ValueError('Root Element is not Settings')
 
         # Directory Settings
         self.DepsDirectory = self.read_element('DepsDirectory')
@@ -91,3 +95,20 @@ class DependSettings(object):
             self.log.warn("http://www.atmel.com/tools/avrsoftwareframework.aspx?tab=overview")
             self.log.warn("So far this is only used for porting mbed to sam based mcu's")
         return
+
+    def get_configpath(self):
+        log = ScriptLogs.getlogger()
+        """Determine which config filename / path to use"""
+        osplatform = platform.system()
+        settingsfile = ""
+        if osplatform == "Windows":
+           settingsfile = "DependSettings_win32.xml"
+        elif osplatform == "Linux":
+            settingsfile = "DependSettings_linux.xml"
+        else:
+            log.critical("Unsupported platform")
+            self.ConfigPath = None
+        self.log.info("Platform identified as: " + osplatform)
+        self.log.info("Settings file: " + settingsfile)
+        self.ConfigPath = abspath(settingsfile)
+        return self.ConfigPath
