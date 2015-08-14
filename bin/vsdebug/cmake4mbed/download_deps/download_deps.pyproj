@@ -54,11 +54,11 @@
     <Folder Include="scripts\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\..\..\DependSettings_linux.xml">
-      <Link>settings\DependSettings_linux.xml</Link>
+    <Content Include="..\..\..\Settings_linux.xml">
+      <Link>settings\Settings_linux.xml</Link>
     </Content>
-    <Content Include="..\..\..\DependSettings_win32.xml">
-      <Link>settings\DependSettings_win32.xml</Link>
+    <Content Include="..\..\..\Settings_win32.xml">
+      <Link>settings\Settings_win32.xml</Link>
     </Content>
   </ItemGroup>
   <PropertyGroup>

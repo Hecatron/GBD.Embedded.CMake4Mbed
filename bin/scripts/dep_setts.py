@@ -23,6 +23,7 @@ class DependSettings(object):
 
         # Path to the config file
         self.ConfigPath = None
+        self.platform = None
 
         # XML Root Tag
         self.xmlroot = None
@@ -88,6 +89,11 @@ class DependSettings(object):
             if source.destsubdir != "atmel-asf":
                 source.remove_archivefile()
 
+        # Re-jig the directories for those that need it
+        for source in self.sources:
+            source.movetoparent_multiple()
+        return
+
         # Check for ASF Sources
         if not exists(join(self.DepsDirectory, "atmel-asf")):
             self.log.warn("There was no Atmel ASF Archive file found")
@@ -99,16 +105,16 @@ class DependSettings(object):
     def get_configpath(self):
         log = ScriptLogs.getlogger()
         """Determine which config filename / path to use"""
-        osplatform = platform.system()
+        self.platform = platform.system()
         settingsfile = ""
-        if osplatform == "Windows":
-           settingsfile = "DependSettings_win32.xml"
-        elif osplatform == "Linux":
-            settingsfile = "DependSettings_linux.xml"
+        if self.platform == "Windows":
+           settingsfile = "Settings_win32.xml"
+        elif self.platform == "Linux":
+            settingsfile = "Settings_linux.xml"
         else:
             log.critical("Unsupported platform")
             self.ConfigPath = None
-        self.log.info("Platform identified as: " + osplatform)
+        self.log.info("Platform identified as: " + self.platform)
         self.log.info("Settings file: " + settingsfile)
         self.ConfigPath = abspath(settingsfile)
         return self.ConfigPath
