@@ -3,22 +3,20 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>a9b98be0-2300-4bd3-9b17-8b39c44f597b</ProjectGuid>
-    <ProjectHome>
-    </ProjectHome>
-    <StartupFile>..\..\..\download_deps.py</StartupFile>
-    <SearchPath>..\..\..\;..\..\..\pylib\</SearchPath>
-    <WorkingDirectory>..\..\..\</WorkingDirectory>
+    <ProjectGuid>68f0c979-9910-4ccf-818f-a8ab67777557</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <StartupFile>..\..\..\tools\LPCLink1\upload.py</StartupFile>
+    <SearchPath>..\..\..\tools\LPCLink1\;..\..\..\</SearchPath>
+    <WorkingDirectory>..\..\..\tools\LPCLink1</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>download_deps</Name>
-    <RootNamespace>downloaddeps</RootNamespace>
+    <Name>LPCLink1</Name>
+    <RootNamespace>LPCLink1</RootNamespace>
     <IsWindowsApplication>False</IsWindowsApplication>
     <InterpreterId>{2af0f10d-7135-4994-9156-5d01c9c11b7e}</InterpreterId>
     <InterpreterVersion>3.4</InterpreterVersion>
     <LaunchProvider>Standard Python launcher</LaunchProvider>
-    <CommandLineArguments>
-    </CommandLineArguments>
     <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
+    <CommandLineArguments>--bootdevice</CommandLineArguments>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -28,47 +26,37 @@
     <DebugSymbols>true</DebugSymbols>
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <PtvsTargetsFile>$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets</PtvsTargetsFile>
+  </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\..\..\download_deps.py">
-      <Link>download_deps.py</Link>
-    </Compile>
-    <Compile Include="..\..\..\pylib\depend\dephttp.py">
-      <Link>pylib\depend\dephttp.py</Link>
-    </Compile>
-    <Compile Include="..\..\..\pylib\depend\depsettings.py">
-      <Link>pylib\depend\depsettings.py</Link>
-    </Compile>
-    <Compile Include="..\..\..\pylib\depend\depsource.py">
-      <Link>pylib\depend\depsource.py</Link>
-    </Compile>
     <Compile Include="..\..\..\pylib\logwrapper.py">
       <Link>pylib\logwrapper.py</Link>
     </Compile>
     <Compile Include="..\..\..\pylib\process.py">
       <Link>pylib\process.py</Link>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <InterpreterReference Include="{2af0f10d-7135-4994-9156-5d01c9c11b7e}\2.7" />
-    <InterpreterReference Include="{2af0f10d-7135-4994-9156-5d01c9c11b7e}\3.4" />
+    <Compile Include="..\..\..\tools\LPCLink1\gdb_client.py">
+      <Link>gdb_client.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\tools\LPCLink1\gdb_server.py">
+      <Link>gdb_server.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\tools\LPCLink1\lpc_settings.py">
+      <Link>lpc_settings.py</Link>
+    </Compile>
+    <Compile Include="..\..\..\tools\LPCLink1\upload.py">
+      <Link>upload.py</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="pylib\" />
-    <Folder Include="pylib\depend\" />
-    <Folder Include="settings\" />
+    <Folder Include="pylib\lpclink\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\..\..\Settings_linux.xml">
-      <Link>settings\Settings_linux.xml</Link>
-    </Content>
-    <Content Include="..\..\..\Settings_win32.xml">
-      <Link>settings\Settings_win32.xml</Link>
-    </Content>
+    <InterpreterReference Include="{2af0f10d-7135-4994-9156-5d01c9c11b7e}\3.4" />
   </ItemGroup>
-  <PropertyGroup>
-    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
-    <PtvsTargetsFile>$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets</PtvsTargetsFile>
-  </PropertyGroup>
   <Import Condition="Exists($(PtvsTargetsFile))" Project="$(PtvsTargetsFile)" />
   <Import Condition="!Exists($(PtvsTargetsFile))" Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

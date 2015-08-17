@@ -17,6 +17,7 @@ parser.add_argument("--builddir", required=False, default=None)
 args, extra = parser.parse_known_args()
 
 # Setup Build Directory if specified
+BUILD_DIR = os.path.abspath("../../build")
 if args.builddir != None:
     BUILD_DIR = os.path.abspath(args.builddir)
 
